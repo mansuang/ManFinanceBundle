@@ -1,0 +1,65 @@
+# src/Man/FinanceBundle/Resources/config/doctrine/PropertyCar.orm.yml
+Man\FinanceBundle\Entity\PropertyCar:
+  type: entity
+  table: man_property_car
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    car_type:
+      type: string
+      length: 255
+      unique: false
+    brand:
+      type: string
+      length: 255
+      unique: false	  
+      nullable: true	
+    model:
+      type: string
+      length: 255
+      unique: false	  
+      nullable: true	 	
+    license_letter:
+      type: string
+      length: 255
+      unique: false	  
+      nullable: true	
+    license_number:
+      type: string
+      length: 255
+      unique: false	  
+      nullable: true	
+    license_province:
+      type: string
+      length: 255
+      unique: false	  
+      nullable: true		  	  
+    serial:
+      type: string
+      length: 255
+      unique: true	  
+      nullable: true	
+    register_date:
+      type: date
+      nullable: true	
+    note:
+      type: text  	
+      nullable: true	  
+    created_at:
+      type: datetime
+      nullable: true	      	   	      
+  oneToMany:
+    card_property_car:
+      targetEntity: CardPropertyCar
+      mappedBy: property_car
+  manyToOne:
+    customer:
+      targetEntity: Customer
+      inversedBy: man_property_car
+      joinColumn:
+        name: customer_id
+        referencedColumnName: id	  
+  lifecycleCallbacks:
+    prePersist: [ setCreatedAtValue ]		  

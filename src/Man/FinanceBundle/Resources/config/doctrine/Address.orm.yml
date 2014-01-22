@@ -1,0 +1,61 @@
+# src/Man/FinanceBundle/Resources/config/doctrine/Address.orm.yml
+Man\FinanceBundle\Entity\Address:
+  type: entity
+  table: man_address
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    address_type:
+      type: string
+      length: 255
+      unique: false	  
+      nullable: true	  	 
+    line_1:
+      type: string
+      length: 255
+      unique: false	  
+      nullable: true
+    mooban:
+      type: string
+      length: 255
+      unique: false	  
+      nullable: true	
+    tambol:
+      type: string
+      length: 255
+      unique: false	  
+      nullable: true	
+    ampher:
+      type: string
+      length: 255
+      unique: false	  
+      nullable: true	
+    province:
+      type: string
+      length: 255
+      unique: false	  
+      nullable: true
+    postcode:
+      type: string
+      length: 255
+      unique: false	  
+      nullable: true	
+    phone:
+      type: string
+      length: 255
+      unique: false	  
+      nullable: true	
+    created_at:
+      type: datetime
+      nullable: true	  	  	  		  	  	  	  		    	      
+  manyToOne:
+    customer:
+      targetEntity: Customer
+      inversedBy: man_address
+      joinColumn:
+        name: customer_id
+        referencedColumnName: id
+  lifecycleCallbacks:
+    prePersist: [ setCreatedAtValue ]		

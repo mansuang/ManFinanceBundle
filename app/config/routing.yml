@@ -1,0 +1,4 @@
+man_finance:
+    resource: "@ManFinanceBundle/Resources/config/routing.yml"
+    prefix:   /
+

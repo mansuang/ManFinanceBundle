@@ -1,0 +1,67 @@
+# src/Man/FinanceBundle/Resources/config/doctrine/PropertyLand.orm.yml
+Man\FinanceBundle\Entity\PropertyLand:
+  type: entity
+  table: man_property_land
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    land_type:
+      type: string
+      length: 255
+      unique: false
+    doc_number:
+      type: string
+      length: 255
+      unique: false	  
+      nullable: true	
+    land_number:
+      type: string
+      length: 255
+      unique: false	  
+      nullable: true	 	
+    page_number:
+      type: string
+      length: 255
+      unique: false	  
+      nullable: true	
+    area:
+      type: string
+      length: 255
+      unique: false	  
+      nullable: true	
+    tambol:
+      type: string
+      length: 255
+      unique: false	  
+      nullable: true		  	  
+    ampher:
+      type: string
+      length: 255
+      unique: false	  
+      nullable: true	
+    province:
+      type: string
+      length: 255
+      unique: false	  
+      nullable: true		  
+    note:
+      type: text  	
+      nullable: true	  
+    created_at:
+      type: datetime
+      nullable: true	      	   	      
+  oneToMany:
+    card_property_land:
+      targetEntity: CardPropertyLand
+      mappedBy: property_land
+  manyToOne:
+    customer:
+      targetEntity: Customer
+      inversedBy: man_property_land
+      joinColumn:
+        name: customer_id
+        referencedColumnName: id	 	  
+  lifecycleCallbacks:
+    prePersist: [ setCreatedAtValue ]		  

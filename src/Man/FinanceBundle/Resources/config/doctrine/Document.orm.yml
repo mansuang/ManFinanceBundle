@@ -1,0 +1,17 @@
+# src/Man/FinanceBundle/Resources/config/doctrine/Document.orm.yml
+Man\FinanceBundle\Entity\Document:
+  type: entity
+  table: man_document
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    document_name:
+      type: string
+      length: 255
+      unique: false
+  oneToMany:
+    card_document:
+      targetEntity: CardDocument
+      mappedBy: document

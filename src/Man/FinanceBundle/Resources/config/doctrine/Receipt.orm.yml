@@ -1,0 +1,71 @@
+# src/Man/FinanceBundle/Resources/config/doctrine/Receipt.orm.yml
+Man\FinanceBundle\Entity\Receipt:
+  type: entity
+  table: man_receipt
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    display_id:
+      type: string
+      length: 255
+      unique: true
+    name:
+      type: string
+      length: 255
+      unique: false	  
+    report_date:
+      type: date
+    receipt_type:
+      type: string
+      length: 255
+      unique: false	 	  
+    amount_bill:
+      type: decimal
+      length: 16
+      precision: 2	  
+    amount_discount:
+      type: decimal
+      length: 16
+      precision: 2	 
+    amount_total:
+      type: decimal
+      length: 16
+      precision: 2	
+    amount_pay:
+      type: decimal
+      length: 16
+      precision: 2	
+    amount_change:
+      type: decimal
+      length: 16
+      precision: 2	
+    created_at:
+      type: datetime
+      nullable: true		
+    update_at:
+      type: datetime
+      nullable: true		    
+    note:
+      type: string
+      length: 255
+      unique: false	  	
+    is_deleted:
+      type: boolean	    	  	  	   	     	  	  	  	  	  
+  manyToOne:
+    branch:
+      targetEntity: Branch
+      inversedBy: man_receipt
+      joinColumn:
+        name: branch_id
+        referencedColumnName: id	
+  oneToMany:	
+    receipt_card:
+      targetEntity: ReceiptCard
+      mappedBy: receipt		
+    receipt_employee:
+      targetEntity: ReceiptEmployee
+      mappedBy: receipt			  
+  lifecycleCallbacks:
+    prePersist: [ setCreatedAtValue ]		

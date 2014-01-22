@@ -1,0 +1,61 @@
+# src/Man/FinanceBundle/Resources/config/doctrine/EmployeeAlias.orm.yml
+Man\FinanceBundle\Entity\EmployeeAlias:
+  type: entity
+  table: man_employee_alias
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    username:
+      type: string
+      length: 255
+      unique: true	  
+      nullable: true	  	 
+    password:
+      type: string
+      length: 255
+      unique: false	  
+      nullable: true
+    name:
+      type: string
+      length: 255
+      unique: false	  
+      nullable: true	
+    mobile:
+      type: string
+      length: 255
+      unique: false	  
+      nullable: true	
+    is_openalias:
+      type: boolean
+    is_alias:
+      type: boolean
+    created_at:
+      type: datetime
+      nullable: true		  
+    last_login_at:
+      type: datetime
+      nullable: true
+    last_login_ip:
+      type: string
+      length: 255
+      unique: false	  
+      nullable: true	
+    last_activity:
+      type: datetime
+      nullable: true		  
+    session_id:
+      type: string
+      length: 255
+      unique: false	  
+      nullable: true	 	    	  	  		  	  	  	  		    	      
+  manyToOne:
+    employee:
+      targetEntity: Employee
+      inversedBy: man_employee_alias
+      joinColumn:
+        name: employee_id
+        referencedColumnName: id
+  lifecycleCallbacks:
+    prePersist: [ setCreatedAtValue ]		

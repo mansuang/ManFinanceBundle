@@ -1,0 +1,8 @@
+# src/Man/FinanceBundle/Resources/config/doctrine/User.orm.yml
+Man\FinanceBundle\Entity\User:
+  type: entity
+  table: man_user
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }

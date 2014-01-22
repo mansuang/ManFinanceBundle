@@ -1,0 +1,20 @@
+# src/Man/FinanceBundle/Resources/config/doctrine/Branch.orm.yml
+Man\FinanceBundle\Entity\Branch:
+  type: entity
+  table: man_branch
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    branch_name:
+      type: string
+      length: 255
+      unique: false
+  oneToMany:	
+    card:
+      targetEntity: Card
+      mappedBy: branch		
+    receipt:
+      targetEntity: Receipt
+      mappedBy: branch			  

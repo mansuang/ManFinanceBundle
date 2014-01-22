@@ -1,0 +1,7 @@
+man_finance_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: ManFinanceBundle:Default:index }
+
+man_finance_test:
+    pattern:  /test
+    defaults: { _controller: ManFinanceBundle:Default:test }

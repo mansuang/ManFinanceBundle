@@ -1,0 +1,51 @@
+# src/Man/FinanceBundle/Resources/config/doctrine/CardFinance.orm.yml
+Man\FinanceBundle\Entity\CardFinance:
+  type: entity
+  table: man_card_finance
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    full_price:
+      type: string
+      length: 255
+      unique: false	  
+      nullable: true	
+    down_price:
+      type: string
+      length: 255
+      unique: false	  
+      nullable: true	
+    expense_cost:
+      type: string
+      length: 255
+      unique: false	  
+      nullable: true	
+    total_round:
+      type: string
+      length: 255
+      unique: false	  
+      nullable: true	
+    total_costloan:
+      type: string
+      length: 255
+      unique: false	  
+      nullable: true	
+    monthly:
+      type: string
+      length: 255
+      unique: false	  
+      nullable: true		
+    late_round:
+      type: string
+      length: 255
+      unique: false	  
+      nullable: true		    	  	  	  	  	  
+  manyToOne:
+    card:
+      targetEntity: Card
+      inversedBy: man_card_finance
+      joinColumn:
+        name: card_id
+        referencedColumnName: id	

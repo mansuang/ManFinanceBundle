@@ -1,0 +1,21 @@
+# src/Man/FinanceBundle/Resources/config/doctrine/CardDocument.orm.yml
+Man\FinanceBundle\Entity\CardDocument:
+  type: entity
+  table: man_card_document
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  manyToOne:
+    document:
+      targetEntity: Document
+      inversedBy: man_card_document
+      joinColumn:
+        name: document_id
+        referencedColumnName: id
+    card:
+      targetEntity: Card
+      inversedBy: man_card_document
+      joinColumn:
+        name: card_id
+        referencedColumnName: id	

@@ -1,0 +1,21 @@
+# src/Man/FinanceBundle/Resources/config/doctrine/CardCustomer.orm.yml
+Man\FinanceBundle\Entity\CardCustomer:
+  type: entity
+  table: man_card_customer
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  manyToOne:
+    customer:
+      targetEntity: Customer
+      inversedBy: man_card_customer
+      joinColumn:
+        name: customer_id
+        referencedColumnName: id
+    card:
+      targetEntity: Card
+      inversedBy: man_card_customer
+      joinColumn:
+        name: card_id
+        referencedColumnName: id

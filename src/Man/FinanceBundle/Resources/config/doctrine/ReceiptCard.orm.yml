@@ -1,0 +1,46 @@
+# src/Man/FinanceBundle/Resources/config/doctrine/ReceiptCard.orm.yml
+Man\FinanceBundle\Entity\ReceiptCard:
+  type: entity
+  table: man_receipt_card
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    due_date:
+      type: date
+    pay_date:
+      type: date
+    monthly:
+      type: decimal
+      length: 16
+      precision: 2	  
+    interest:
+      type: decimal
+      length: 16
+      precision: 2	 
+    fine:
+      type: decimal
+      length: 16
+      precision: 2	
+    inc_dec_cost:
+      type: decimal
+      length: 16
+      precision: 2	
+    amount_bill:
+      type: decimal
+      length: 16
+      precision: 2		  	  	   	     	  	  	  	  	  
+  manyToOne:
+    card:
+      targetEntity: Card
+      inversedBy: man_receipt_card
+      joinColumn:
+        name: card_id
+        referencedColumnName: id	
+    receipt:
+      targetEntity: Receipt
+      inversedBy: man_receipt_card
+      joinColumn:
+        name: receipt_id
+        referencedColumnName: id			

@@ -1,0 +1,21 @@
+# src/Man/FinanceBundle/Resources/config/doctrine/ReceiptEmployee.orm.yml
+Man\FinanceBundle\Entity\ReceiptEmployee:
+  type: entity
+  table: man_receipt_employee
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  manyToOne:
+    employee:
+      targetEntity: Employee
+      inversedBy: man_receipt_employee
+      joinColumn:
+        name: employee_id
+        referencedColumnName: id
+    receipt:
+      targetEntity: Receipt
+      inversedBy: man_receipt_employee
+      joinColumn:
+        name: receipt_id
+        referencedColumnName: id	

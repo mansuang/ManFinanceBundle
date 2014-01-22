@@ -1,0 +1,21 @@
+# src/Man/FinanceBundle/Resources/config/doctrine/CardPropertyCar.orm.yml
+Man\FinanceBundle\Entity\CardPropertyCar:
+  type: entity
+  table: man_card_property_car
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  manyToOne:
+    property_car:
+      targetEntity: PropertyCar
+      inversedBy: man_card_property_car
+      joinColumn:
+        name: property_car_id
+        referencedColumnName: id
+    card:
+      targetEntity: Card
+      inversedBy: man_card_property_car
+      joinColumn:
+        name: card_id
+        referencedColumnName: id	

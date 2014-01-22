@@ -1,0 +1,19 @@
+# src/Man/FinanceBundle/Resources/config/doctrine/Owner.orm.yml
+Man\FinanceBundle\Entity\Owner:
+  type: entity
+  table: man_owner
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+   owner_name:
+      type: string
+      length: 255
+      unique: false
+   is_default:
+      type: boolean
+  oneToMany:	
+    card:
+      targetEntity: Card
+      mappedBy: owner	  

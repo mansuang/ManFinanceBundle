@@ -1,0 +1,66 @@
+# src/Man/FinanceBundle/Resources/config/doctrine/Customer.orm.yml
+Man\FinanceBundle\Entity\Customer:
+  type: entity
+  table: man_customer
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    title_name:
+      type: string
+      length: 255
+      unique: false
+    first_name:
+      type: string
+      length: 255
+      unique: false	  
+      nullable: true	
+    last_name:
+      type: string
+      length: 255
+      unique: false	  
+      nullable: true	 	
+    nick_name:
+      type: string
+      length: 255
+      unique: false	  
+      nullable: true	
+    id_card:
+      type: string
+      length: 255
+      unique: true	  
+      nullable: true	
+    birth_date:
+      type: date
+      nullable: true	
+    phone:
+      type: string
+      length: 255
+      unique: false	  
+      nullable: true	
+    created_at:
+      type: datetime
+      nullable: true	  
+    updated_at:
+      type: datetime
+      nullable: true	  	  	    	   	      
+  oneToMany:
+    address:
+      targetEntity: Address
+      mappedBy: customer
+    property_car:
+      targetEntity: PropertyCar
+      mappedBy: customer
+    property_land:
+      targetEntity: PropertyLand
+      mappedBy: customer	  
+    card_customer:
+      targetEntity: CardCustomer
+      mappedBy: customer
+    card_supporter:
+      targetEntity: CardSupporter
+      mappedBy: customer	 	  
+  lifecycleCallbacks:
+    prePersist: [ setCreatedAtValue ]
+    preUpdate: [ setUpdatedAtValue ]

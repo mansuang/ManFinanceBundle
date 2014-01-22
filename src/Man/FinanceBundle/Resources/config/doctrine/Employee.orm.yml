@@ -1,0 +1,41 @@
+# src/Man/FinanceBundle/Resources/config/doctrine/Employee.orm.yml
+Man\FinanceBundle\Entity\Employee:
+  type: entity
+  table: man_employee
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    mid:
+      type: string
+      length: 255
+      nullable: true
+    username:
+      type: string
+      length: 255
+      unique: true	
+    level:
+      type: integer
+    is_open:
+      type: boolean	   	    
+  oneToMany:
+    card:
+      targetEntity: Card
+      mappedBy: employee		
+    receipt_employee:
+      targetEntity: ReceiptEmployee
+      mappedBy: employee			  
+    children:
+      targetEntity: Employee
+      mappedBy: parent	
+    employee_alias:
+      targetEntity: EmployeeAlias
+      mappedBy: employee	
+  manyToOne:
+    parent:
+      targetEntity: Employee
+      inversedBy: children
+      joinColumn:
+        name: parent_id
+        referencedColumnName: id		    		  

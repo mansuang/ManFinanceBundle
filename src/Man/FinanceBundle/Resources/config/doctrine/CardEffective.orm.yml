@@ -1,0 +1,33 @@
+# src/Man/FinanceBundle/Resources/config/doctrine/CardEffective.orm.yml
+Man\FinanceBundle\Entity\CardEffective:
+  type: entity
+  table: man_card_effective
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    late_year:
+      type: string
+      length: 255
+      unique: false	  
+      nullable: true	
+    late_month:
+      type: string
+      length: 255
+      unique: false	  
+      nullable: true	
+    late_day:
+      type: string
+      length: 255
+      unique: false	  
+      nullable: true	
+    is_firstmonth:
+      type: boolean	    	  	  	  	  	  
+  manyToOne:
+    card:
+      targetEntity: Card
+      inversedBy: man_card_effective
+      joinColumn:
+        name: card_id
+        referencedColumnName: id	
