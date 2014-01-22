@@ -11,10 +11,10 @@ Man\FinanceBundle\Entity\Branch:
       type: string
       length: 255
       unique: false
-  oneToMany:	
+  oneToMany:
     card:
       targetEntity: Card
-      mappedBy: branch		
+      mappedBy: branch
     receipt:
       targetEntity: Receipt
-      mappedBy: branch			  
+      mappedBy: branch
