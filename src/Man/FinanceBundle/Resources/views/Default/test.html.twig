@@ -12,31 +12,9 @@
 
 
   <!-- Stylesheets -->
-  <link href="{{ asset('bundles/manfinance/style/bootstrap.css') }}" rel="stylesheet">
-  <!-- Font awesome icon -->
-  <link rel="stylesheet" href="{{ asset('bundles/manfinance/style/font-awesome.css') }}"> 
-  <!-- jQuery UI -->
-  <link rel="stylesheet" href="{{ asset('bundles/manfinance/style/jquery-ui.css') }}"> 
-  <!-- Calendar -->
-  <link rel="stylesheet" href="{{ asset('bundles/manfinance/style/fullcalendar.css') }}">
-  <!-- prettyPhoto -->
-  <link rel="stylesheet" href="{{ asset('bundles/manfinance/style/prettyPhoto.css') }}">   
-  <!-- Star rating -->
-  <link rel="stylesheet" href="{{ asset('bundles/manfinance/style/rateit.css') }}">
-  <!-- Date picker -->
-  <link rel="stylesheet" href="{{ asset('bundles/manfinance/style/bootstrap-datetimepicker.min.css') }}">
-  <!-- jQuery Gritter -->
-  <link rel="stylesheet" href="{{ asset('bundles/manfinance/style/jquery.gritter.css') }}">
-  <!-- CLEditor -->
-  <link rel="stylesheet" href="{{ asset('bundles/manfinance/style/jquery.cleditor.css') }}"> 
-  <!-- Bootstrap toggle -->
-  <link rel="stylesheet" href="{{ asset('bundles/manfinance/style/bootstrap-switch.css') }}">
-  <!-- Main stylesheet -->
-  <link href="{{ asset('bundles/manfinance/style/style.css') }}" rel="stylesheet">
-  <!-- Widgets stylesheet -->
-  <link href="{{ asset('bundles/manfinance/style/widgets.css') }}" rel="stylesheet">   
- 
-  
+{% stylesheets 'bundles/manfinance/style/*' filter='cssrewrite' %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+{% endstylesheets %}  
   
   <!-- HTML5 Support for IE -->
   <!--[if lt IE 9]>
@@ -1035,28 +1013,28 @@
 <span class="totop"><a href="#"><i class="icon-chevron-up"></i></a></span> 
 
 <!-- JS -->
-<script src="{{ asset('bundles/manfinance/js/jquery.js') }}"></script> <!-- jQuery -->
-<script src="{{ asset('bundles/manfinance/js/bootstrap.js') }}"></script> <!-- Bootstrap -->
-<script src="{{ asset('bundles/manfinance/js/jquery-ui-1.10.2.custom.min.js') }}"></script> <!-- jQuery UI -->
-<script src="{{ asset('bundles/manfinance/js/fullcalendar.min.js') }}"></script> <!-- Full Google Calendar - Calendar -->
-<script src="{{ asset('bundles/manfinance/js/jquery.rateit.min.js') }}"></script> <!-- RateIt - Star rating -->
-<script src="{{ asset('bundles/manfinance/js/jquery.prettyPhoto.js') }}"></script> <!-- prettyPhoto -->
-
-<!-- jQuery Flot -->
-<script src="{{ asset('bundles/manfinance/js/excanvas.min.js') }}"></script>
-<script src="{{ asset('bundles/manfinance/js/jquery.flot.js') }}"></script>
-<script src="{{ asset('bundles/manfinance/js/jquery.flot.resize.js') }}"></script>
-<script src="{{ asset('bundles/manfinance/js/jquery.flot.pie.js') }}"></script>
-<script src="{{ asset('bundles/manfinance/js/jquery.flot.stack.js') }}"></script>
-
-<script src="{{ asset('bundles/manfinance/js/jquery.gritter.min.js') }}"></script> <!-- jQuery Gritter -->
-<script src="{{ asset('bundles/manfinance/js/sparklines.js') }}"></script> <!-- Sparklines -->
-<script src="{{ asset('bundles/manfinance/js/jquery.cleditor.min.js') }}"></script> <!-- CLEditor -->
-<script src="{{ asset('bundles/manfinance/js/bootstrap-datetimepicker.min.js') }}"></script> <!-- Date picker -->
-<script src="{{ asset('bundles/manfinance/js/bootstrap-switch.min.js') }}"></script> <!-- Bootstrap Toggle -->
-<script src="{{ asset('bundles/manfinance/js/filter.js') }}"></script> <!-- Filter for support page -->
-<script src="{{ asset('bundles/manfinance/js/custom.js') }}"></script> <!-- Custom codes -->
-<script src="{{ asset('bundles/manfinance/js/charts.js') }}"></script> <!-- Custom chart codes -->
+{% javascripts
+    '@ManFinanceBundle/Resources/public/js/jquery.js'
+    '@ManFinanceBundle/Resources/public/js/bootstrap.js'
+	'@ManFinanceBundle/Resources/public/js/jquery-ui-1.10.2.custom.min.js'
+	'@ManFinanceBundle/Resources/public/js/fullcalendar.min.js'
+	'@ManFinanceBundle/Resources/public/js/jquery.rateit.min.js'
+	'@ManFinanceBundle/Resources/public/js/jquery.prettyPhoto.js'
+	'@ManFinanceBundle/Resources/public/js/excanvas.min.js'
+	'@ManFinanceBundle/Resources/public/js/jquery.flot.js'
+	'@ManFinanceBundle/Resources/public/js/jquery.flot.resize.js'
+	'@ManFinanceBundle/Resources/public/js/jquery.flot.pie.js'
+	'@ManFinanceBundle/Resources/public/js/jquery.flot.stack.js'
+	'@ManFinanceBundle/Resources/public/js/jquery.gritter.min.js'
+	'@ManFinanceBundle/Resources/public/js/sparklines.js'
+	'@ManFinanceBundle/Resources/public/js/jquery.cleditor.min.js'
+	'@ManFinanceBundle/Resources/public/js/bootstrap-datetimepicker.min.js'
+	'@ManFinanceBundle/Resources/public/js/bootstrap-switch.min.js'
+	'@ManFinanceBundle/Resources/public/js/filter.js'
+	'@ManFinanceBundle/Resources/public/js/custom.js'
+    '@ManFinanceBundle/Resources/public/js/charts.js' %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
 
 <!-- Script for this page -->
 <script type="text/javascript">
