@@ -6,13 +6,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class DefaultController extends Controller
 {
-    public function indexAction($name)
+    public function indexAction()
     {
-        return $this->render('ManFinanceBundle:Default:index.html.twig', array('name' => $name));
+        return $this->render('ManFinanceBundle::base.html.twig');
     }
 	
     public function testAction()
     {
-        return $this->render('ManFinanceBundle:Default:test.html.twig');
+		$user = $this->container->get('security.context')->getToken()->getUser();
+        return $this->render('ManFinanceBundle:Default:test.html.twig', array('user' => $user) );
     }	
 }

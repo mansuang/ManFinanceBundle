@@ -1,3 +1,4 @@
+{% trans_default_domain 'FOSUserBundle' %}
 <!DOCTYPE html>
 <html>
     <head>
@@ -52,14 +53,14 @@
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">            
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-              <img src="{{ asset('bundles/manfinance/img/user.jpg') }}" alt="" class="nav-user-pic img-responsive" /> Admin <b class="caret"></b>              
+              <img src="{{ asset('bundles/manfinance/img/user.jpg') }}" alt="" class="nav-user-pic img-responsive" /> {{ 'profile.show.username'|trans }}: {{ app.user.username }} <b class="caret"></b>              
             </a>
             
             <!-- Dropdown menu -->
             <ul class="dropdown-menu">
-              <li><a href="#"><i class="icon-user"></i> Profile</a></li>
-              <li><a href="#"><i class="icon-cogs"></i> Settings</a></li>
-              <li><a href="login.html"><i class="icon-off"></i> Logout</a></li>
+              <li><a href="{{ path('fos_user_profile_show') }}"><i class="icon-user"></i> Profile</a></li>
+              <li><a href="{{ path('fos_user_change_password') }}"><i class="icon-cogs"></i> Change Password</a></li>
+              <li><a href="{{ path('fos_user_security_logout') }}"><i class="icon-off"></i> Logout</a></li>
             </ul>
           </li>
           
@@ -288,6 +289,7 @@
 
         {% block body %}{% endblock %}
 		
+	</div>
    <!-- Mainbar ends -->	    	
    <div class="clearfix"></div>
 

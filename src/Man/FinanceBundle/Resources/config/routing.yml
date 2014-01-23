@@ -1,5 +1,5 @@
 man_finance_homepage:
-    pattern:  /hello/{name}
+    pattern:  /
     defaults: { _controller: ManFinanceBundle:Default:index }
 
 man_finance_test:

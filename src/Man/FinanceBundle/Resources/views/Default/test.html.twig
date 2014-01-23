@@ -1,3 +1,4 @@
+{% trans_default_domain 'FOSUserBundle' %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,7 +55,7 @@
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">            
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-              <img src="{{ asset('bundles/manfinance/img/user.jpg') }}" alt="" class="nav-user-pic img-responsive" /> Admin <b class="caret"></b>              
+              <img src="{{ asset('bundles/manfinance/img/user.jpg') }}" alt="" class="nav-user-pic img-responsive" />  {{ 'profile.show.username'|trans }}: {{ user.username }} <b class="caret"></b>              
             </a>
             
             <!-- Dropdown menu -->
