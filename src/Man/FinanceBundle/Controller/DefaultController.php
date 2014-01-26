@@ -13,7 +13,6 @@ class DefaultController extends Controller
 	
     public function testAction()
     {
-		$user = $this->container->get('security.context')->getToken()->getUser();
-        return $this->render('ManFinanceBundle:Default:test.html.twig', array('user' => $user) );
+        return $this->render('ManFinanceBundle:Default:test.html.twig' );
     }	
 }
