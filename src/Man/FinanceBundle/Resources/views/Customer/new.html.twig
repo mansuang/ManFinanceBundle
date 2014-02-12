@@ -1,15 +1,179 @@
-{% extends '::base.html.twig' %}
+{% extends 'ManFinanceBundle:Customer:base.html.twig' %}
 
 {% block body -%}
-    <h1>Customer creation</h1>
+	    <!-- Matter -->
 
-    {{ form(form) }}
+		{{ form_start(form) }}
+	    <div class="matter">
+        <div class="container">
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('finance_customer') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+          <div class="row">
+            <div class="col-md-7">
+
+              <div class="widget wviolet">
+                <div class="widget-head">
+                  <div class="pull-left"> {{ 'Add New Customer'|trans }} </div>
+                  <div class="widget-icons pull-right">
+                    <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a> 
+                    <a href="#" class="wclose"><i class="icon-remove"></i></a>
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+
+                <div class="widget-content">
+					  <div class="padd">
+						{# ------------------------------------------------------ Customer ------------------------------------------------------ #}
+						<h6> {{ 'Customer Details'|trans }} </h6>
+						<hr />
+						<div class="form-horizontal">
+							{{ form_row(form.id_card) }}
+							{{ form_row(form.title_name) }}
+							{{ form_row(form.first_name) }}
+							{{ form_row(form.last_name) }}
+							{{ form_row(form.nick_name) }}
+							{{ form_row(form.phone) }}
+							{{ form_row(form.birth_date) }}
+							{{ form_row(form.address) }}
+
+						</div>
+			
+					  </div>
+                </div>
+                    <!-- Footer goes here -->
+              </div>  
+              
+            </div>
+
+            <!-- post sidebar -->
+
+            <div class="col-md-5">
+
+              <div class="widget wgreen">
+                <div class="widget-head">
+                  <div class="pull-left">{{ 'Property'|trans }}</div>
+                  <div class="widget-icons pull-right">
+                    <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a> 
+                    <a href="#" class="wclose"><i class="icon-remove"></i></a>
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+
+                <div class="widget-content">
+                  <div class="padd">
+					{# ------------------------------------------------------ Land ------------------------------------------------------ #}
+					<div class="form-horizontal">
+						{{ form_row(form.property_land) }}
+					
+					{# ------------------------------------------------------ Car ------------------------------------------------------ #}
+					
+						{{ form_row(form.property_car) }}
+					</div>
+
+                  </div>
+                </div>
+              </div>  			  
+
+            </div>
+
+          </div>
+
+        </div>
+		  </div>
+		{{ form_end(form) }}
+		<!-- /form -->
+		<!-- Matter ends -->
+{% endblock %}
+
+{% block javascripts %}
+<script>
+var $addressCollectionHolder;
+var $landCollectionHolder;
+var $carCollectionHolder;
+
+// setup an "add a tag" link
+var $addAddressLink = $('<a href="#" class="add_tag_link"><i class="icon-plus-sign"></i> {{ 'Add Address'|trans }}</a>');
+var $addressNewLinkLi = $('<div></div>').append($addAddressLink);
+var $addLandLink = $('<a href="#" class="add_tag_link"><i class="icon-plus-sign"></i> {{ 'Add Land'|trans }}</a>');
+var $landNewLinkLi = $('<div></div>').append($addLandLink);
+var $addCarLink = $('<a href="#" class="add_tag_link"><i class="icon-plus-sign"></i> {{ 'Add Car'|trans }}</a>');
+var $carNewLinkLi = $('<div></div>').append($addCarLink);
+
+jQuery(document).ready(function() {
+    // Get the ul that holds the collection of tags
+    $addressCollectionHolder = $('#customer_address');
+
+    // add the "add a tag" anchor and li to the tags ul
+    $addressCollectionHolder.append($addressNewLinkLi);
+
+    // count the current form inputs we have (e.g. 2), use that as the new
+    // index when inserting a new item (e.g. 2)
+    $addressCollectionHolder.data('index', $addressCollectionHolder.find(':input').length);
+
+    $addAddressLink.on('click', function(e) {
+        // prevent the link from creating a "#" on the URL
+        e.preventDefault();
+
+        // add a new tag form (see next code block)
+        addTagForm($addressCollectionHolder, $addressNewLinkLi, ' {{ 'Address'|trans }}');
+    });
+	
+    // Get the ul that holds the collection of tags
+    $landCollectionHolder = $('#customer_property_land');
+
+    // add the "add a tag" anchor and li to the tags ul
+    $landCollectionHolder.append($landNewLinkLi);
+
+    // count the current form inputs we have (e.g. 2), use that as the new
+    // index when inserting a new item (e.g. 2)
+    $landCollectionHolder.data('index', $landCollectionHolder.find(':input').length);
+
+    $addLandLink.on('click', function(e) {
+        // prevent the link from creating a "#" on the URL
+        e.preventDefault();
+
+        // add a new tag form (see next code block)
+        addTagForm($landCollectionHolder, $landNewLinkLi,' {{ 'Land'|trans }}');
+    });
+	
+	
+    // Get the ul that holds the collection of tags
+    $carCollectionHolder = $('#customer_property_car');
+
+    // add the "add a tag" anchor and li to the tags ul
+    $carCollectionHolder.append($carNewLinkLi);
+
+    // count the current form inputs we have (e.g. 2), use that as the new
+    // index when inserting a new item (e.g. 2)
+    $carCollectionHolder.data('index', $carCollectionHolder.find(':input').length);
+
+    $addCarLink.on('click', function(e) {
+        // prevent the link from creating a "#" on the URL
+        e.preventDefault();
+
+        // add a new tag form (see next code block)
+        addTagForm($carCollectionHolder, $carNewLinkLi,' {{ 'Car'|trans }}');
+    });	
+});
+
+function addTagForm($collectionHolder, $newLinkLi, label) {
+    // Get the data-prototype explained earlier
+    var prototype = $collectionHolder.data('prototype');
+
+    // get the new index
+    var index = $collectionHolder.data('index');
+
+    // Replace '__name__' in the prototype's HTML to
+    // instead be a number based on how many items we have
+    var newForm = prototype.replace(/__name__/g, index);
+	newForm = newForm.replace(/form-control/g, '');
+	newForm = newForm.replace(/label__/g, label);
+	
+    // increase the index with one for the next item
+    $collectionHolder.data('index', index + 1);
+
+    // Display the form in the page in an li, before the "Add a tag" link li
+    var $newFormLi = $('<li></li>').append(newForm);
+    $newLinkLi.before($newFormLi);
+}
+</script>
 {% endblock %}

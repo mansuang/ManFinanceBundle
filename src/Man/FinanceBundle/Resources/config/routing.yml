@@ -6,32 +6,15 @@ man_finance_test:
     pattern:  /test
     defaults: { _controller: ManFinanceBundle:Default:test }
 
+man_finance_dec:
+    resource: "@ManFinanceBundle/Resources/config/routing/dec.yml"
+    prefix:   /finance/dec
+
 man_finance_customer:
     resource: "@ManFinanceBundle/Resources/config/routing/customer.yml"
     prefix:   /finance/customer
 
+man_finance_address:
+        resource: "@ManFinanceBundle/Resources/config/routing/address.yml"
+        prefix:   /finance/address
 #finance/dec
-
-man_finance_dec_newcard:
-    pattern:  /finance/dec/newcard
-    defaults: { _controller: ManFinanceBundle:Default:test }
-
-man_finance_dec_searchcard:
-    pattern:  /finance/dec/searchcard
-    defaults: { _controller: ManFinanceBundle:Default:test }
-
-man_finance_dec_debtsmem:
-    pattern:  /finance/dec/debtsmem
-    defaults: { _controller: ManFinanceBundle:Default:test }
-
-man_finance_dec_debtsarea:
-    pattern:  /finance/dec/debtsarea
-    defaults: { _controller: ManFinanceBundle:Default:test }
-
-man_finance_dec_appointment:
-    pattern:  /finance/dec/appointment
-    defaults: { _controller: ManFinanceBundle:Default:test }
-
-man_finance_dec_percentdebt:
-    pattern:  /finance/dec/percentdebt
-    defaults: { _controller: ManFinanceBundle:Default:test }		

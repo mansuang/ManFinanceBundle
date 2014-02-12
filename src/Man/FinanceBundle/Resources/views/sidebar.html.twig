@@ -1,3 +1,4 @@
+
 <div class="sidebar">
         <div class="sidebar-dropdown"><a href="#">Navigation</a></div>
 
@@ -22,14 +23,14 @@
             <li class="has_submenu nlightblue">
               <a href="#">
                 <!-- Menu name with icon -->
-                <i class="icon-th"></i> ลดต้นลดดอก 
+                <i class="icon-th"></i>{{ 'Effective Rate'|trans }}
                 <!-- Icon for dropdown -->
                 <span class="pull-right"><i class="icon-angle-right"></i></span>
               </a>
 
               <ul>
-                <li><a href="{{ path('man_finance_dec_newcard') }}">เพิ่มการ์ดใหม่</a></li>
-                <li><a href="{{ path('man_finance_dec_searchcard') }}">ค้นหาการ์ด</a></li>
+                <li><a href="{{ path('man_finance_dec_newcard') }}">{{ 'Add New Card'|trans }}</a></li>
+                <li><a href="{{ path('man_finance_dec_searchcard') }}">{{ 'Search Card'|trans }}</a></li>
 				<li><a href="{{ path('man_finance_dec_debtsmem') }}">ค้างชำระตามลูกค้า</a></li>
 				<li><a href="{{ path('man_finance_dec_debtsarea') }}">ค้างชำระตามพื้นที่</a></li>
 				<li><a href="{{ path('man_finance_dec_appointment') }}">นัดหมายลูกค้า</a></li>
@@ -37,46 +38,20 @@
               </ul>
             </li>
 
-            <li class="ngreen"><a href="charts.html"><i class="icon-bar-chart"></i> Charts</a></li>
-
-            <li class="norange"><a href="ui.html"><i class="icon-sitemap"></i> UI Elements</a></li>
-
-            <li class="has_submenu nviolet">
+            <!-- Menu with sub menu -->
+            <li class="has_submenu nlightblue">
               <a href="#">
-                <i class="icon-file-alt"></i> Pages #1
+                <!-- Menu name with icon -->
+                <i class="icon-th"></i>{{ 'Customer'|trans }}
+                <!-- Icon for dropdown -->
                 <span class="pull-right"><i class="icon-angle-right"></i></span>
               </a>
 
               <ul>
-                <li><a href="calendar.html">Calendar</a></li>
-                <li><a href="post.html">Make Post</a></li>
-                <li><a href="login.html">Login</a></li>
-                <li><a href="register.html">Register</a></li>
-                <li><a href="statement.html">Statement</a></li>
-                <li><a href="error-log.html">Error Log</a></li>
-                <li><a href="support.html">Support</a></li>
+				<li><a href="{{ path('man_finance_customer') }}">{{ 'Customer List'|trans }}</a></li>
+                <li><a href="{{ path('man_finance_customer_new') }}">{{ 'Add New Customer'|trans }}</a></li>
               </ul>
-            </li> 
-
-            <li class="has_submenu nblue">
-              <a href="#">
-                <i class="icon-file-alt"></i> Pages #2
-                <span class="pull-right"><i class="icon-angle-right"></i></span>
-              </a>
-              
-              <ul>
-                <li><a href="error.html">Error</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="grid.html">Grid</a></li>
-                <li><a href="invoice.html">Invoice</a></li>
-                <li><a href="media.html">Media</a></li>
-                <li><a href="profile.html">Profile</a></li>
-              </ul>
-            </li> 
-
-            <li class="nred"><a href="forms.html"><i class="icon-list"></i> Forms</a></li>
-
-            <li class="nlightblue"><a href="tables.html"><i class="icon-table"></i> Tables</a></li>
+            </li>
 
           </ul>
 

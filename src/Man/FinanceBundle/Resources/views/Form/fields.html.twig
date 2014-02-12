@@ -1,0 +1,13 @@
+{# src/Man/FinanceBundle/Resources/views/Form/fields.html.twig #}
+
+{% block form_row %}
+{% spaceless %}
+	<div class="form-group">
+	  {{ form_label(form, null, { 'label_attr': {'class': 'col-lg-3 control-label'} }) }}
+	  <div class="col-lg-6">
+		  {{ form_errors(form) }}
+		  {{ form_widget(form, { 'attr': {'class': 'form-control'} }) }}
+	  </div>
+	</div>
+{% endspaceless %}
+{% endblock form_row %}

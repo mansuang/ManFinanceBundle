@@ -1,0 +1,57 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Customer list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title_name</th>
+                <th>First_name</th>
+                <th>Last_name</th>
+                <th>Nick_name</th>
+                <th>Id_card</th>
+                <th>Birth_date</th>
+                <th>Phone</th>
+                <th>Created_at</th>
+                <th>Updated_at</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('man_finance_customer_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.titlename }}</td>
+                <td>{{ entity.firstname }}</td>
+                <td>{{ entity.lastname }}</td>
+                <td>{{ entity.nickname }}</td>
+                <td>{{ entity.idcard }}</td>
+                <td>{% if entity.birthdate %}{{ entity.birthdate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.phone }}</td>
+                <td>{% if entity.createdat %}{{ entity.createdat|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.updatedat %}{{ entity.updatedat|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('man_finance_customer_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('man_finance_customer_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('man_finance_customer_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

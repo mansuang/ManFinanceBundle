@@ -1,0 +1,98 @@
+{% extends 'ManFinanceBundle:Customer:base.html.twig' %}
+{% form_theme form 'ManFinanceBundle:Form:fields.html.twig' %}
+
+{% block body -%}
+	    <!-- Matter -->
+
+	    <div class="matter">
+        <div class="container">
+
+          <div class="row">
+
+            <div class="col-md-12">
+
+
+              <div class="widget wgreen">
+                
+                <div class="widget-head">
+                  <div class="pull-left"> {{ 'Add New Customer'|trans }} </div>
+                  <div class="widget-icons pull-right">
+                    <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a> 
+                    <a href="#" class="wclose"><i class="icon-remove"></i></a>
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+
+                <div class="widget-content">
+                  <div class="padd">
+
+                    <h6> {{ 'Customer Details'|trans }} </h6>
+                    <hr />
+					
+    {{ form(form, {'attr':{'class': 'form-horizontal', 'role': 'form'}}) }}
+
+                  </div>
+                </div>
+                  <div class="widget-foot">
+                    <!-- Footer goes here -->
+                  </div>
+              </div>  
+
+            </div>
+
+          </div>
+
+        </div>
+		  </div>
+
+		<!-- Matter ends -->
+{% endblock %}
+
+{% block javascripts %}
+<script>
+var $collectionHolder;
+
+// setup an "add a tag" link
+var $addTagLink = $('<a href="#" class="add_tag_link">Add a tag</a>');
+var $newLinkLi = $('<div></div>').append($addTagLink);
+
+jQuery(document).ready(function() {
+    // Get the ul that holds the collection of tags
+    $collectionHolder = $('#customer_address');
+
+    // add the "add a tag" anchor and li to the tags ul
+    $collectionHolder.append($newLinkLi);
+
+    // count the current form inputs we have (e.g. 2), use that as the new
+    // index when inserting a new item (e.g. 2)
+    $collectionHolder.data('index', $collectionHolder.find(':input').length);
+
+    $addTagLink.on('click', function(e) {
+        // prevent the link from creating a "#" on the URL
+        e.preventDefault();
+
+        // add a new tag form (see next code block)
+        addTagForm($collectionHolder, $newLinkLi);
+    });
+});
+
+function addTagForm($collectionHolder, $newLinkLi) {
+    // Get the data-prototype explained earlier
+    var prototype = $collectionHolder.data('prototype');
+
+    // get the new index
+    var index = $collectionHolder.data('index');
+
+    // Replace '__name__' in the prototype's HTML to
+    // instead be a number based on how many items we have
+    var newForm = prototype.replace(/__name__/g, index);
+
+    // increase the index with one for the next item
+    $collectionHolder.data('index', index + 1);
+
+    // Display the form in the page in an li, before the "Add a tag" link li
+    var $newFormLi = $('<li></li>').append(newForm);
+    $newLinkLi.before($newFormLi);
+}
+</script>
+{% endblock %}

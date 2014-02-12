@@ -3,6 +3,7 @@
 namespace Man\FinanceBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use APY\DataGridBundle\Grid\Mapping as GRID;
 
 /**
  * Customer
@@ -11,51 +12,61 @@ class Customer
 {
     /**
      * @var integer
+	 * @GRID\Column(title="ID")
      */
     private $id;
 
     /**
      * @var string
+	 * @GRID\Column(title="Title Name")
      */
     private $title_name;
 
     /**
      * @var string
+	 * @GRID\Column(title="First Name")
      */
     private $first_name;
 
     /**
      * @var string
+	 * @GRID\Column(title="Last Name")
      */
     private $last_name;
 
     /**
      * @var string
+	 * @GRID\Column(title="Nick Name")
      */
     private $nick_name;
 
     /**
      * @var string
+	 * @GRID\Column(title="ID Card")
      */
     private $id_card;
 
     /**
      * @var \DateTime
+	 * @GRID\Column(title="Birth Date")
      */
     private $birth_date;
 
     /**
      * @var string
+	 * @GRID\Column(title="Phone")
      */
     private $phone;
 
     /**
      * @var \DateTime
+	 * @GRID\Column(title="Created At")
      */
     private $created_at;
 
     /**
      * @var \DateTime
+	 * @GRID\Column(title="Updated At")
      */
     private $updated_at;
 
@@ -321,10 +332,18 @@ class Customer
      */
     public function addAddress(\Man\FinanceBundle\Entity\Address $address)
     {
-        $this->address[] = $address;
-
+		/*
+		$address->setCustomer($this);
+		if( trim($address->getAddressType()) != '' )
+		{
+        	$this->address[] = $address;
+		}
+		*/
+		$this->address[] = $address;
+		
         return $this;
     }
+	
 
     /**
      * Remove address
@@ -483,6 +502,10 @@ class Customer
     public function setCreatedAtValue()
     {
         // Add your code here
+		  if(!$this->getCreatedAt())
+		  {
+			$this->created_at = new \DateTime();
+		  }		
     }
 
     /**
@@ -491,5 +514,39 @@ class Customer
     public function setUpdatedAtValue()
     {
         // Add your code here
+		$this->updated_at = new \DateTime();
+    }
+	
+	public function __toString()
+	{
+		return $this->title_name.$this->first_name.' '.$this->last_name;
+	}	
+    /**
+     * @var boolean
+     */
+    private $is_deleted;
+
+
+    /**
+     * Set is_deleted
+     *
+     * @param boolean $isDeleted
+     * @return Customer
+     */
+    public function setIsDeleted($isDeleted)
+    {
+        $this->is_deleted = $isDeleted;
+
+        return $this;
+    }
+
+    /**
+     * Get is_deleted
+     *
+     * @return boolean 
+     */
+    public function getIsDeleted()
+    {
+        return $this->is_deleted;
     }
 }

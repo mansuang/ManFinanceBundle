@@ -1,0 +1,19 @@
+# src/Acme/TaskBundle/Resources/config/doctrine/Task.orm.yml
+Acme\TaskBundle\Entity\Task:
+  type: entity
+  table: acme_task
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    description:
+      type: string
+      length: 255
+      unique: false
+      nullable: true
+  oneToMany:
+      tags:
+          targetEntity: Tag
+          cascade:      [persist]
+          mappedBy: task

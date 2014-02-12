@@ -1,30 +1,30 @@
-finance_customer:
+man_finance_customer:
     pattern:  /
     defaults: { _controller: "ManFinanceBundle:Customer:index" }
 
-finance_customer_show:
+man_finance_customer_show:
     pattern:  /{id}/show
     defaults: { _controller: "ManFinanceBundle:Customer:show" }
 
-finance_customer_new:
+man_finance_customer_new:
     pattern:  /new
     defaults: { _controller: "ManFinanceBundle:Customer:new" }
 
-finance_customer_create:
+man_finance_customer_create:
     pattern:  /create
     defaults: { _controller: "ManFinanceBundle:Customer:create" }
     requirements: { _method: post }
 
-finance_customer_edit:
+man_finance_customer_edit:
     pattern:  /{id}/edit
     defaults: { _controller: "ManFinanceBundle:Customer:edit" }
 
-finance_customer_update:
+man_finance_customer_update:
     pattern:  /{id}/update
     defaults: { _controller: "ManFinanceBundle:Customer:update" }
     requirements: { _method: post|put }
 
-finance_customer_delete:
+man_finance_customer_delete:
     pattern:  /{id}/delete
     defaults: { _controller: "ManFinanceBundle:Customer:delete" }
     requirements: { _method: post|delete }

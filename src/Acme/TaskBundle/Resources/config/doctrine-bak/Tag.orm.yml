@@ -1,0 +1,14 @@
+# src/Acme/TaskBundle/Resources/config/doctrine/Tag.orm.yml
+Acme\TaskBundle\Entity\Tag:
+  type: entity
+  table: acme_tag
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    name:
+      type: string
+      length: 255
+      unique: false
+      nullable: true

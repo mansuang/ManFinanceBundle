@@ -1,0 +1,23 @@
+man_finance_dec_newcard:
+    pattern:  /newcard
+    defaults: { _controller: ManFinanceBundle:Dec:newcard }
+
+man_finance_dec_searchcard:
+    pattern:  /searchcard
+    defaults: { _controller: ManFinanceBundle:Default:test }
+
+man_finance_dec_debtsmem:
+    pattern:  /debtsmem
+    defaults: { _controller: ManFinanceBundle:Default:test }
+
+man_finance_dec_debtsarea:
+    pattern:  /debtsarea
+    defaults: { _controller: ManFinanceBundle:Default:test }
+
+man_finance_dec_appointment:
+    pattern:  /appointment
+    defaults: { _controller: ManFinanceBundle:Default:test }
+
+man_finance_dec_percentdebt:
+    pattern:  /percentdebt
+    defaults: { _controller: ManFinanceBundle:Default:test }

@@ -6,8 +6,23 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Man\FinanceBundle\Entity\Customer;
-use Man\FinanceBundle\Form\CustomerType;
+use Man\FinanceBundle\Form\Customer\CustomerType;
 
+use Man\FinanceBundle\Entity\Address;
+use Man\FinanceBundle\Form\Customer\AddressType;
+
+use Man\FinanceBundle\Entity\PropertyLand;
+use Man\FinanceBundle\Form\Customer\PropertyLandType;
+
+use Man\FinanceBundle\Entity\PropertyCar;
+use Man\FinanceBundle\Form\Customer\PropertyCarType;
+
+use Doctrine\Common\Collections\ArrayCollection;
+
+//APY Data Grid
+use APY\DataGridBundle\Grid\Source\Entity;
+use APY\DataGridBundle\Grid\Export\ExcelExport;
+use APY\DataGridBundle\Grid\Action\RowAction;
 /**
  * Customer controller.
  *
@@ -21,6 +36,7 @@ class CustomerController extends Controller
      */
     public function indexAction()
     {
+		/*
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('ManFinanceBundle:Customer')->findAll();
@@ -28,6 +44,26 @@ class CustomerController extends Controller
         return $this->render('ManFinanceBundle:Customer:index.html.twig', array(
             'entities' => $entities,
         ));
+		*/
+		
+		$source = new Entity('ManFinanceBundle:Customer');
+		$grid = $this->get('grid');
+		
+		$grid->setSource($source);
+		$grid->hideFilters();
+				
+		$grid->setActionsColumnTitle('default_actions_column');
+
+		// Attach a rowAction to the Actions Column
+		$rowAction1 = new RowAction('Show', 'man_finance_customer_show');
+		$grid->addRowAction($rowAction1);
+		$rowAction2 = new RowAction('Edit', 'man_finance_customer_edit');
+		$grid->addRowAction($rowAction2);		
+		$rowAction3 = new RowAction('Delete', 'man_finance_customer_delete');
+		$grid->addRowAction($rowAction3);
+		
+		$grid->addExport(new ExcelExport('Excel Export', 'export'));
+		return $grid->getGridResponse('ManFinanceBundle:Customer:index.html.twig');		
     }
     /**
      * Creates a new Customer entity.
@@ -36,15 +72,39 @@ class CustomerController extends Controller
     public function createAction(Request $request)
     {
         $entity = new Customer();
+
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+			
             $em = $this->getDoctrine()->getManager();
-            $em->persist($entity);
+			
+			// Address
+			foreach( $entity->getAddress() as $address)
+			{				
+				$address->setCustomer($entity);
+				$em->persist($address);					
+			}
+			
+			// Property land
+			foreach( $entity->getPropertyLand() as $property_land)
+			{				
+				$property_land->setCustomer($entity);
+				$em->persist($address);					
+			}			
+			
+			// Property car
+			foreach( $entity->getPropertyCar() as $property_car)
+			{				
+				$property_car->setCustomer($entity);
+				$em->persist($address);					
+			}			
+			
+            $em->persist( $entity );
             $em->flush();
 
-            return $this->redirect($this->generateUrl('finance_customer_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('man_finance_customer_show', array('id' => $entity->getId())));
         }
 
         return $this->render('ManFinanceBundle:Customer:new.html.twig', array(
@@ -63,7 +123,7 @@ class CustomerController extends Controller
     private function createCreateForm(Customer $entity)
     {
         $form = $this->createForm(new CustomerType(), $entity, array(
-            'action' => $this->generateUrl('finance_customer_create'),
+            'action' => $this->generateUrl('man_finance_customer_create'),
             'method' => 'POST',
         ));
 
@@ -79,6 +139,16 @@ class CustomerController extends Controller
     public function newAction()
     {
         $entity = new Customer();
+		$address = new Address();
+		$entity->getAddress()->add($address);
+		
+		$property_land = new PropertyLand();
+		$entity->getPropertyLand()->add($property_land);
+		
+		$property_car = new PropertyCar();
+		$entity->getPropertyCar()->add($property_car);
+		
+		
         $form   = $this->createCreateForm($entity);
 
         return $this->render('ManFinanceBundle:Customer:new.html.twig', array(
@@ -125,9 +195,9 @@ class CustomerController extends Controller
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('ManFinanceBundle:Customer:edit.html.twig', array(
+        return $this->render('ManFinanceBundle:Customer:new.html.twig', array(
             'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -142,7 +212,7 @@ class CustomerController extends Controller
     private function createEditForm(Customer $entity)
     {
         $form = $this->createForm(new CustomerType(), $entity, array(
-            'action' => $this->generateUrl('finance_customer_update', array('id' => $entity->getId())),
+            'action' => $this->generateUrl('man_finance_customer_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
@@ -171,7 +241,7 @@ class CustomerController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('finance_customer_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('man_finance_customer_edit', array('id' => $id)));
         }
 
         return $this->render('ManFinanceBundle:Customer:edit.html.twig', array(
@@ -200,8 +270,12 @@ class CustomerController extends Controller
             $em->remove($entity);
             $em->flush();
         }
+		else
+		{
+			die('isValid = false');	
+		}
 
-        return $this->redirect($this->generateUrl('finance_customer'));
+        return $this->redirect($this->generateUrl('man_finance_customer'));
     }
 
     /**
@@ -214,7 +288,7 @@ class CustomerController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('finance_customer_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('man_finance_customer_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()

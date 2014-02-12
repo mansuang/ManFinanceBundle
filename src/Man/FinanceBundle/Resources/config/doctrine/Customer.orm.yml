@@ -44,17 +44,22 @@ Man\FinanceBundle\Entity\Customer:
       nullable: true	  
     updated_at:
       type: datetime
-      nullable: true	  	  	    	   	      
+      nullable: true
+    is_deleted:
+      type: boolean	  
   oneToMany:
     address:
       targetEntity: Address
       mappedBy: customer
+      cascade: ["persist"]
     property_car:
       targetEntity: PropertyCar
       mappedBy: customer
+      cascade: ["persist"]
     property_land:
       targetEntity: PropertyLand
       mappedBy: customer	  
+      cascade: ["persist"]
     card_customer:
       targetEntity: CardCustomer
       mappedBy: customer

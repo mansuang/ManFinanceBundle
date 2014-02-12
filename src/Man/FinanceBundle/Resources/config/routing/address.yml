@@ -1,0 +1,30 @@
+finance_address:
+    pattern:  /
+    defaults: { _controller: "ManFinanceBundle:Address:index" }
+
+finance_address_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "ManFinanceBundle:Address:show" }
+
+finance_address_new:
+    pattern:  /new
+    defaults: { _controller: "ManFinanceBundle:Address:new" }
+
+finance_address_create:
+    pattern:  /create
+    defaults: { _controller: "ManFinanceBundle:Address:create" }
+    requirements: { _method: post }
+
+finance_address_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "ManFinanceBundle:Address:edit" }
+
+finance_address_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "ManFinanceBundle:Address:update" }
+    requirements: { _method: post|put }
+
+finance_address_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "ManFinanceBundle:Address:delete" }
+    requirements: { _method: post|delete }

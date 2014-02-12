@@ -96,10 +96,7 @@ Man\FinanceBundle\Entity\Card:
       unique: true	  
       nullable: true	
     is_deleted:
-      type: string
-      length: 255
-      unique: true	  
-      nullable: true
+      type: boolean
     created_at:
       type: datetime
       nullable: true		
