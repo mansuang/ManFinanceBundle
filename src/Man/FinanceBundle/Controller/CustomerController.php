@@ -91,14 +91,14 @@ class CustomerController extends Controller
 			foreach( $entity->getPropertyLand() as $property_land)
 			{				
 				$property_land->setCustomer($entity);
-				$em->persist($address);					
+				$em->persist($property_land);					
 			}			
 			
 			// Property car
 			foreach( $entity->getPropertyCar() as $property_car)
 			{				
 				$property_car->setCustomer($entity);
-				$em->persist($address);					
+				$em->persist($property_car);					
 			}			
 			
             $em->persist( $entity );
@@ -233,12 +233,92 @@ class CustomerController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Customer entity.');
         }
+		
+		// Address
+		$originalAddress = new ArrayCollection();
+		foreach( $entity->getAddress() as $address)
+		{				
+			$address->setCustomer($entity);
+			$originalAddress->add($address);				
+		}
+		
+		// Property land
+		$originalPropertyLand = new ArrayCollection();
+		foreach( $entity->getPropertyLand() as $property_land)
+		{				
+			$property_land->setCustomer($entity);
+			$originalPropertyLand->add($property_land);			
+		}			
+		
+		// Property car
+		$originalPropertyCar = new ArrayCollection();
+		foreach( $entity->getPropertyCar() as $property_car)
+		{			
+			$originalPropertyCar->add($property_car);				
+		}
 
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
-
+		
         if ($editForm->isValid()) {
+		
+			// remove Address
+			foreach ($originalAddress as $address) {
+				if (false === $entity->getAddress()->contains($address)) {
+					$address->setCustomer(null);
+					$em->persist($address);
+					// if you wanted to delete the Tag entirely, you can also do that
+					// $em->remove($address);
+				}
+				
+			}		
+			
+			// remove Property Land
+			foreach ($originalPropertyLand as $property_land) {
+				if (false === $entity->getPropertyLand()->contains($property_land)) {
+					$property_land->setCustomer(null);
+					$em->persist($property_land);
+
+					// if you wanted to delete the Tag entirely, you can also do that
+					// $em->remove($property_land);
+				}
+			}	
+			
+			// remove Property Car
+			foreach ($originalPropertyCar as $property_car) {
+				if (false === $entity->getPropertyCar()->contains($property_car)) {
+					$property_car->setCustomer(null);					
+					$em->persist($property_car);
+					
+					// if you wanted to delete the Tag entirely, you can also do that
+					//$em->remove($property_car);
+				}
+
+			}
+
+			// add Address
+			foreach( $entity->getAddress() as $address)
+			{				
+				$address->setCustomer($entity);
+				$em->persist($address);					
+			}
+			
+			// add Property land
+			foreach( $entity->getPropertyLand() as $property_land)
+			{				
+				$property_land->setCustomer($entity);
+				$em->persist($property_land);					
+			}			
+			
+			// add Property car
+			foreach( $entity->getPropertyCar() as $property_car)
+			{				
+				$property_car->setCustomer($entity);
+				$em->persist($property_car);					
+			}	
+			
+			$em->persist($entity);
             $em->flush();
 
             return $this->redirect($this->generateUrl('man_finance_customer_edit', array('id' => $id)));
@@ -259,7 +339,7 @@ class CustomerController extends Controller
         $form = $this->createDeleteForm($id);
         $form->handleRequest($request);
 
-        if ($form->isValid()) {
+        // if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('ManFinanceBundle:Customer')->find($id);
 
@@ -269,11 +349,11 @@ class CustomerController extends Controller
 
             $em->remove($entity);
             $em->flush();
-        }
-		else
-		{
-			die('isValid = false');	
-		}
+        // }
+		// else
+		// {
+			// die('isValid = false');	
+		// }
 
         return $this->redirect($this->generateUrl('man_finance_customer'));
     }

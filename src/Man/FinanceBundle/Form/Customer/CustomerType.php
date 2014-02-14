@@ -46,18 +46,21 @@ class CustomerType extends AbstractType
 				'type'	  => new AddressType(),
 				'allow_add'=> true,
 				'by_reference' => true,
+				'allow_delete' => true,
 			))			
 			->add('property_land', 'collection', array(
 				'label'	  => 'Land',
 				'type'	  => new PropertyLandType(),
 				'allow_add'=> true,
 				'by_reference' => true,
+				'allow_delete' => true,
 			))			
 			->add('property_car', 'collection', array(
 				'label'	  => 'Car',
 				'type'	  => new PropertyCarType(),
 				'allow_add'=> true,
 				'by_reference' => true,
+				'allow_delete' => true,
 			))			
         ;
     }

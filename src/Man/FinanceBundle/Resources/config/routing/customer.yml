@@ -27,4 +27,3 @@ man_finance_customer_update:
 man_finance_customer_delete:
     pattern:  /{id}/delete
     defaults: { _controller: "ManFinanceBundle:Customer:delete" }
-    requirements: { _method: post|delete }

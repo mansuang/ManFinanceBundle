@@ -1,11 +1,13 @@
 <?php
 
 return array(
+	// Common
 	'Dashboard'			=>	'หน้าหลัก',
 	'Effective Rate'	=>	'ลดต้นลดดอก',
 	'Effective Rate Work'=>	'งานลดต้นลดดอก',
 	'Add New Card'		=> 	'เพิ่มการ์ดใหม่',
 	'Search Card'		=>	'ค้นหาการ์ด',
+	'Delete'			=>	'ลบ',
 	
 	//Customer
 	'Customer'			=>	'ลูกค้า',

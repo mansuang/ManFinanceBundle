@@ -33,7 +33,14 @@
 							{{ form_row(form.nick_name) }}
 							{{ form_row(form.phone) }}
 							{{ form_row(form.birth_date) }}
-							{{ form_row(form.address) }}
+						   <h6>{{ 'Address'|trans }}</h6>
+						   <hr />
+							<ul class="addresses" data-prototype="{{ form_widget(form.address.vars.prototype)|e }}">
+								{# iterate over each existing tag and render its only field: name #}
+								{% for addr in form.address %}
+									<li>{{ form_row(addr) }}</li>
+								{% endfor %}
+							</ul>							
 
 						</div>
 			
@@ -62,11 +69,25 @@
                   <div class="padd">
 					{# ------------------------------------------------------ Land ------------------------------------------------------ #}
 					<div class="form-horizontal">
-						{{ form_row(form.property_land) }}
+						   <h6>{{ 'Land'|trans }}</h6>
+						   <hr />
+							<ul class="property_land" data-prototype="{{ form_widget(form.property_land.vars.prototype)|e }}">
+								{# iterate over each existing tag and render its only field: name #}
+								{% for land in form.property_land %}
+									<li>{{ form_row(land) }}</li>
+								{% endfor %}
+							</ul>						
 					
 					{# ------------------------------------------------------ Car ------------------------------------------------------ #}
+						   <h6>{{ 'Car'|trans }}</h6>
+						   <hr />
+							<ul class="property_car" data-prototype="{{ form_widget(form.property_car.vars.prototype)|e }}">
+								{# iterate over each existing tag and render its only field: name #}
+								{% for car in form.property_car %}
+									<li>{{ form_row(car) }}</li>
+								{% endfor %}
+							</ul>				
 					
-						{{ form_row(form.property_car) }}
 					</div>
 
                   </div>
@@ -92,16 +113,24 @@ var $carCollectionHolder;
 
 // setup an "add a tag" link
 var $addAddressLink = $('<a href="#" class="add_tag_link"><i class="icon-plus-sign"></i> {{ 'Add Address'|trans }}</a>');
-var $addressNewLinkLi = $('<div></div>').append($addAddressLink);
+var $addressNewLinkLi = $('<li></li>').append($addAddressLink);
 var $addLandLink = $('<a href="#" class="add_tag_link"><i class="icon-plus-sign"></i> {{ 'Add Land'|trans }}</a>');
-var $landNewLinkLi = $('<div></div>').append($addLandLink);
+var $landNewLinkLi = $('<li></li>').append($addLandLink);
 var $addCarLink = $('<a href="#" class="add_tag_link"><i class="icon-plus-sign"></i> {{ 'Add Car'|trans }}</a>');
-var $carNewLinkLi = $('<div></div>').append($addCarLink);
+var $carNewLinkLi = $('<li></li>').append($addCarLink);
 
 jQuery(document).ready(function() {
+	//*************************************************
+	// address
     // Get the ul that holds the collection of tags
-    $addressCollectionHolder = $('#customer_address');
+	//*************************************************
+    $addressCollectionHolder = $('ul.addresses');
 
+	// add a delete link to all of the existing tag form li elements
+    $addressCollectionHolder.find('li').each(function() {
+        addTagFormDeleteLink($(this));
+    });
+	
     // add the "add a tag" anchor and li to the tags ul
     $addressCollectionHolder.append($addressNewLinkLi);
 
@@ -117,9 +146,17 @@ jQuery(document).ready(function() {
         addTagForm($addressCollectionHolder, $addressNewLinkLi, ' {{ 'Address'|trans }}');
     });
 	
+	//*************************************************
+	// Property Land
     // Get the ul that holds the collection of tags
-    $landCollectionHolder = $('#customer_property_land');
-
+	//*************************************************
+    $landCollectionHolder = $('ul.property_land');
+	
+	// add a delete link to all of the existing tag form li elements
+    $landCollectionHolder.find('li').each(function() {
+        addTagFormDeleteLink($(this));
+    });
+	
     // add the "add a tag" anchor and li to the tags ul
     $landCollectionHolder.append($landNewLinkLi);
 
@@ -136,9 +173,17 @@ jQuery(document).ready(function() {
     });
 	
 	
+	//*************************************************
+	// Property Land
     // Get the ul that holds the collection of tags
-    $carCollectionHolder = $('#customer_property_car');
+	//*************************************************
+    $carCollectionHolder = $('ul.property_car');
 
+		// add a delete link to all of the existing tag form li elements
+    $carCollectionHolder.find('li').each(function() {
+        addTagFormDeleteLink($(this));
+    });
+	
     // add the "add a tag" anchor and li to the tags ul
     $carCollectionHolder.append($carNewLinkLi);
 
@@ -174,6 +219,22 @@ function addTagForm($collectionHolder, $newLinkLi, label) {
     // Display the form in the page in an li, before the "Add a tag" link li
     var $newFormLi = $('<li></li>').append(newForm);
     $newLinkLi.before($newFormLi);
+	
+    // add a delete link to the new form
+    addTagFormDeleteLink($newFormLi);	
+}
+
+function addTagFormDeleteLink($tagFormLi) {
+    var $removeFormA = $('<a href="#"><i class="icon-minus-sign"></i> {{ 'Delete'|trans }}</a>');
+    $tagFormLi.append($removeFormA);
+
+    $removeFormA.on('click', function(e) {
+        // prevent the link from creating a "#" on the URL
+        e.preventDefault();
+
+        // remove the li for the tag form
+        $tagFormLi.remove();
+    });
 }
 </script>
 {% endblock %}
