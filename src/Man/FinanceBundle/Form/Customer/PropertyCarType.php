@@ -15,13 +15,23 @@ class PropertyCarType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('car_type')
+            ->add('car_type',null, array(
+				'label'   => 'Car Type',	
+			))
             ->add('brand')
             ->add('model')
-            ->add('license_letter')
-            ->add('license_number')
-            ->add('license_province')
-            ->add('register_date')
+            ->add('license_letter',null, array(
+				'label'   => 'License Letter',	
+			))
+            ->add('license_number',null, array(
+				'label'   => 'License Number',	
+			))
+            ->add('license_province',null, array(
+				'label'   => 'License Province',	
+			))
+            ->add('register_date',null, array(
+				'label'   => 'Register Date',	
+			))
             ->add('serial')
             ->add('note')
         ;
