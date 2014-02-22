@@ -136,4 +136,9 @@ class Branch
     {
         return $this->receipt;
     }
+	
+	public function __toString()
+	{
+		return $this->branch_name;
+	}
 }

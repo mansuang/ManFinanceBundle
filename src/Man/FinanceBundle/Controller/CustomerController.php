@@ -142,11 +142,11 @@ class CustomerController extends Controller
 		$address = new Address();
 		$entity->getAddress()->add($address);
 		
-		$property_land = new PropertyLand();
-		$entity->getPropertyLand()->add($property_land);
+		// $property_land = new PropertyLand();
+		// $entity->getPropertyLand()->add($property_land);
 		
-		$property_car = new PropertyCar();
-		$entity->getPropertyCar()->add($property_car);
+		// $property_car = new PropertyCar();
+		// $entity->getPropertyCar()->add($property_car);
 		
 		
         $form   = $this->createCreateForm($entity);

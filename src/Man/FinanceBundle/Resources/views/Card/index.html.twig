@@ -1,0 +1,87 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Card list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Display_id</th>
+                <th>Card_type</th>
+                <th>Employee_id</th>
+                <th>Mid</th>
+                <th>Branch_id</th>
+                <th>Begin_cost</th>
+                <th>Card_status</th>
+                <th>Contract_style</th>
+                <th>Contract_date</th>
+                <th>Cycle_day</th>
+                <th>Interest_percent</th>
+                <th>Interest_last_percent</th>
+                <th>Allow_day_late</th>
+                <th>Last_payment_date</th>
+                <th>Next_payment_date</th>
+                <th>Current_due_date</th>
+                <th>Next_due_date</th>
+                <th>Current_cost</th>
+                <th>Current_interest</th>
+                <th>Current_fine</th>
+                <th>Ip_address</th>
+                <th>Is_deleted</th>
+                <th>Created_at</th>
+                <th>Update_at</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('finance_card_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.displayid }}</td>
+                <td>{{ entity.cardtype }}</td>
+                <td>{{ entity.employeeid }}</td>
+                <td>{{ entity.mid }}</td>
+                <td>{{ entity.branchid }}</td>
+                <td>{{ entity.begincost }}</td>
+                <td>{{ entity.cardstatus }}</td>
+                <td>{{ entity.contractstyle }}</td>
+                <td>{% if entity.contractdate %}{{ entity.contractdate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.cycleday }}</td>
+                <td>{{ entity.interestpercent }}</td>
+                <td>{{ entity.interestlastpercent }}</td>
+                <td>{{ entity.allowdaylate }}</td>
+                <td>{% if entity.lastpaymentdate %}{{ entity.lastpaymentdate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.nextpaymentdate %}{{ entity.nextpaymentdate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.currentduedate %}{{ entity.currentduedate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.nextduedate %}{{ entity.nextduedate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.currentcost }}</td>
+                <td>{{ entity.currentinterest }}</td>
+                <td>{{ entity.currentfine }}</td>
+                <td>{{ entity.ipaddress }}</td>
+                <td>{{ entity.isdeleted }}</td>
+                <td>{% if entity.createdat %}{{ entity.createdat|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.updateat %}{{ entity.updateat|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('finance_card_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('finance_card_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('finance_card_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

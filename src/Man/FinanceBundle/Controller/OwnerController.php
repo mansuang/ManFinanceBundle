@@ -5,74 +5,65 @@ namespace Man\FinanceBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use Man\FinanceBundle\Entity\Card;
-use Man\FinanceBundle\Form\Dec\DecCardType;
+use Man\FinanceBundle\Entity\Owner;
+use Man\FinanceBundle\Form\OwnerType;
 
 /**
- * Card controller.
+ * Owner controller.
  *
  */
-class DecController extends Controller
+class OwnerController extends Controller
 {
 
     /**
-     * Lists all Card entities.
+     * Lists all Owner entities.
      *
      */
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('ManFinanceBundle:Card')->findAll();
+        $entities = $em->getRepository('ManFinanceBundle:Owner')->findAll();
 
-        return $this->render('ManFinanceBundle:Card:index.html.twig', array(
+        return $this->render('ManFinanceBundle:Owner:index.html.twig', array(
             'entities' => $entities,
         ));
     }
     /**
-     * Creates a new Card entity.
+     * Creates a new Owner entity.
      *
      */
     public function createAction(Request $request)
     {
-        $entity = new Card();
-
+        $entity = new Owner();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-			
-			// Set vars
-			$entity->setDisplayId( $entity->getBranch()->getId().$entity->getOwner()->getId().$entity->getEmployee()->getId().date("ymdHis") );
-			$entity->setCardType('effective');
-			$entity->setCardStatus('new');
-			$entity->setCycleDay( $entity->getContractDate()->format('d') );
-			
             $em->persist($entity);
             $em->flush();
 
-            //return $this->redirect($this->generateUrl('man_finance_dec_new', array('id' => $entity->getId())));
-            return $this->redirect($this->generateUrl('man_finance_dec_new'));
+            return $this->redirect($this->generateUrl('finance_owner_show', array('id' => $entity->getId())));
         }
 
-        return $this->render('ManFinanceBundle:Dec:new.html.twig', array(
+        return $this->render('ManFinanceBundle:Owner:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
     }
 
     /**
-    * Creates a form to create a Card entity.
+    * Creates a form to create a Owner entity.
     *
-    * @param Card $entity The entity
+    * @param Owner $entity The entity
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createCreateForm(Card $entity)
+    private function createCreateForm(Owner $entity)
     {
-        $form = $this->createForm(new DecCardType(), $entity, array(
-            'action' => $this->generateUrl('man_finance_dec_create'),
+        $form = $this->createForm(new OwnerType(), $entity, array(
+            'action' => $this->generateUrl('finance_owner_create'),
             'method' => 'POST',
         ));
 
@@ -82,68 +73,59 @@ class DecController extends Controller
     }
 
     /**
-     * Displays a form to create a new Card entity.
+     * Displays a form to create a new Owner entity.
      *
      */
     public function newAction()
     {
-        $entity = new Card();
-		
-		// default values
-		$entity->setContractDate(new \DateTime());
-		$entity->setLastPaymentDate(new \DateTime());
-		$entity->setInterestPercent(3);
-		$entity->setInterestLatePercent(2);
-		$entity->setAllowDayLate(31);
-		
-		
+        $entity = new Owner();
         $form   = $this->createCreateForm($entity);
 
-        return $this->render('ManFinanceBundle:Dec:new.html.twig', array(
+        return $this->render('ManFinanceBundle:Owner:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
     }
 
     /**
-     * Finds and displays a Card entity.
+     * Finds and displays a Owner entity.
      *
      */
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('ManFinanceBundle:Card')->find($id);
+        $entity = $em->getRepository('ManFinanceBundle:Owner')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Card entity.');
+            throw $this->createNotFoundException('Unable to find Owner entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('ManFinanceBundle:Card:show.html.twig', array(
+        return $this->render('ManFinanceBundle:Owner:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),        ));
     }
 
     /**
-     * Displays a form to edit an existing Card entity.
+     * Displays a form to edit an existing Owner entity.
      *
      */
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('ManFinanceBundle:Card')->find($id);
+        $entity = $em->getRepository('ManFinanceBundle:Owner')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Card entity.');
+            throw $this->createNotFoundException('Unable to find Owner entity.');
         }
 
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('ManFinanceBundle:Card:edit.html.twig', array(
+        return $this->render('ManFinanceBundle:Owner:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -151,16 +133,16 @@ class DecController extends Controller
     }
 
     /**
-    * Creates a form to edit a Card entity.
+    * Creates a form to edit a Owner entity.
     *
-    * @param Card $entity The entity
+    * @param Owner $entity The entity
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createEditForm(Card $entity)
+    private function createEditForm(Owner $entity)
     {
-        $form = $this->createForm(new CardType(), $entity, array(
-            'action' => $this->generateUrl('finance_card_update', array('id' => $entity->getId())),
+        $form = $this->createForm(new OwnerType(), $entity, array(
+            'action' => $this->generateUrl('finance_owner_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
@@ -169,17 +151,17 @@ class DecController extends Controller
         return $form;
     }
     /**
-     * Edits an existing Card entity.
+     * Edits an existing Owner entity.
      *
      */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('ManFinanceBundle:Card')->find($id);
+        $entity = $em->getRepository('ManFinanceBundle:Owner')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Card entity.');
+            throw $this->createNotFoundException('Unable to find Owner entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -189,17 +171,17 @@ class DecController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('finance_card_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('finance_owner_edit', array('id' => $id)));
         }
 
-        return $this->render('ManFinanceBundle:Card:edit.html.twig', array(
+        return $this->render('ManFinanceBundle:Owner:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
     /**
-     * Deletes a Card entity.
+     * Deletes a Owner entity.
      *
      */
     public function deleteAction(Request $request, $id)
@@ -209,21 +191,21 @@ class DecController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('ManFinanceBundle:Card')->find($id);
+            $entity = $em->getRepository('ManFinanceBundle:Owner')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Card entity.');
+                throw $this->createNotFoundException('Unable to find Owner entity.');
             }
 
             $em->remove($entity);
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('finance_card'));
+        return $this->redirect($this->generateUrl('finance_owner'));
     }
 
     /**
-     * Creates a form to delete a Card entity by id.
+     * Creates a form to delete a Owner entity by id.
      *
      * @param mixed $id The entity id
      *
@@ -232,7 +214,7 @@ class DecController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('finance_card_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('finance_owner_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()

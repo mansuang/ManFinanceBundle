@@ -1,8 +1,5 @@
-{% extends 'ManFinanceBundle::base.html.twig' %}
-{% form_theme form 'ManFinanceBundle:Form:fields.html.twig' %}
-
-{% block page_heading %} {{ 'Effective Rate'|trans }} {% endblock page_heading %}
-{% block page_meta %} {{ 'Effective Rate Work'|trans }} {% endblock page_meta %}
+{% extends 'ManFinanceBundle:Dec:base.html.twig' %}
+{#% form_theme form 'ManFinanceBundle:Form:fields.html.twig' %#}
 
 {% block body -%}
 	    <!-- Matter -->
@@ -29,10 +26,10 @@
                 <div class="widget-content">
                   <div class="padd">
 
-                    <h6> {{ 'Customer Details'|trans }} </h6>
+                    <h6> {{ 'Add New Dec Card'|trans }} </h6>
                     <hr />
 					
-    {{ form(form, {'attr':{'class': 'form-horizontal', 'role': 'form'}}) }}
+    {{ form(form) }}
 
         <ul class="record_actions">
     <li>

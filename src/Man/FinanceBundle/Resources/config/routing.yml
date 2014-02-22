@@ -17,4 +17,15 @@ man_finance_customer:
 man_finance_address:
         resource: "@ManFinanceBundle/Resources/config/routing/address.yml"
         prefix:   /finance/address
-#finance/dec
+
+ManFinanceBundle_finance_branch:
+    resource: "@ManFinanceBundle/Resources/config/routing/branch.yml"
+    prefix:   /finance/branch
+
+ManFinanceBundle_finance_owner:
+        resource: "@ManFinanceBundle/Resources/config/routing/owner.yml"
+        prefix:   /finance/owner
+
+ManFinanceBundle_finance_card:
+        resource: "@ManFinanceBundle/Resources/config/routing/card.yml"
+        prefix:   /finance/card

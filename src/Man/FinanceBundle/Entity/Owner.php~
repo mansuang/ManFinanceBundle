@@ -125,4 +125,9 @@ class Owner
     {
         return $this->card;
     }
+	
+	public function __toString()
+	{
+		return $this->owner_name;
+	}	
 }

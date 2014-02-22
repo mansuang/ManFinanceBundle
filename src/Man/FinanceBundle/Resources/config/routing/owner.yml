@@ -1,0 +1,30 @@
+finance_owner:
+    pattern:  /
+    defaults: { _controller: "ManFinanceBundle:Owner:index" }
+
+finance_owner_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "ManFinanceBundle:Owner:show" }
+
+finance_owner_new:
+    pattern:  /new
+    defaults: { _controller: "ManFinanceBundle:Owner:new" }
+
+finance_owner_create:
+    pattern:  /create
+    defaults: { _controller: "ManFinanceBundle:Owner:create" }
+    requirements: { _method: post }
+
+finance_owner_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "ManFinanceBundle:Owner:edit" }
+
+finance_owner_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "ManFinanceBundle:Owner:update" }
+    requirements: { _method: post|put }
+
+finance_owner_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "ManFinanceBundle:Owner:delete" }
+    requirements: { _method: post|delete }

@@ -6,13 +6,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Man\FinanceBundle\Entity\Card;
-use Man\FinanceBundle\Form\Dec\DecCardType;
+use Man\FinanceBundle\Form\CardType;
 
 /**
  * Card controller.
  *
  */
-class DecController extends Controller
+class CardController extends Controller
 {
 
     /**
@@ -36,27 +36,18 @@ class DecController extends Controller
     public function createAction(Request $request)
     {
         $entity = new Card();
-
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-			
-			// Set vars
-			$entity->setDisplayId( $entity->getBranch()->getId().$entity->getOwner()->getId().$entity->getEmployee()->getId().date("ymdHis") );
-			$entity->setCardType('effective');
-			$entity->setCardStatus('new');
-			$entity->setCycleDay( $entity->getContractDate()->format('d') );
-			
             $em->persist($entity);
             $em->flush();
 
-            //return $this->redirect($this->generateUrl('man_finance_dec_new', array('id' => $entity->getId())));
-            return $this->redirect($this->generateUrl('man_finance_dec_new'));
+            return $this->redirect($this->generateUrl('finance_card_show', array('id' => $entity->getId())));
         }
 
-        return $this->render('ManFinanceBundle:Dec:new.html.twig', array(
+        return $this->render('ManFinanceBundle:Card:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
@@ -71,8 +62,8 @@ class DecController extends Controller
     */
     private function createCreateForm(Card $entity)
     {
-        $form = $this->createForm(new DecCardType(), $entity, array(
-            'action' => $this->generateUrl('man_finance_dec_create'),
+        $form = $this->createForm(new CardType(), $entity, array(
+            'action' => $this->generateUrl('finance_card_create'),
             'method' => 'POST',
         ));
 
@@ -88,18 +79,9 @@ class DecController extends Controller
     public function newAction()
     {
         $entity = new Card();
-		
-		// default values
-		$entity->setContractDate(new \DateTime());
-		$entity->setLastPaymentDate(new \DateTime());
-		$entity->setInterestPercent(3);
-		$entity->setInterestLatePercent(2);
-		$entity->setAllowDayLate(31);
-		
-		
         $form   = $this->createCreateForm($entity);
 
-        return $this->render('ManFinanceBundle:Dec:new.html.twig', array(
+        return $this->render('ManFinanceBundle:Card:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));

@@ -53,4 +53,11 @@ return array(
 	'Serial'			=>	'หมายเลขเครื่อง',	
 	'Add Land'			=>	'เพิ่มที่ดิน',
 	'Add Car'			=>	'เพิ่มรถ',	
+	
+	//Documents
+	'Document'			=>	'เอกสาร',	
+	'Document Name'		=>	'ชื่อเอกสาร',	
+	
+	//Dec
+	'Add New Dec Card'	=>	'เพิ่มการ์ดลดต้นลดดอกใหม่',		
 );

@@ -202,6 +202,9 @@ class Card
         $this->card_finance = new \Doctrine\Common\Collections\ArrayCollection();
         $this->card_effective = new \Doctrine\Common\Collections\ArrayCollection();
         $this->receipt_card = new \Doctrine\Common\Collections\ArrayCollection();
+		
+		//Define default value
+		$this->is_deleted = false;
     }
 
     /**
@@ -1104,6 +1107,10 @@ class Card
     public function setCreatedAtValue()
     {
         // Add your code here
+		  if(!$this->getCreatedAt())
+		  {
+			$this->created_at = new \DateTime();
+		  }			
     }
 
     /**
@@ -1112,5 +1119,90 @@ class Card
     public function setUpdatedAtValue()
     {
         // Add your code here
+		$this->updated_at = new \DateTime();
+    }
+    /**
+     * @var string
+     */
+    private $note;
+
+
+    /**
+     * Set note
+     *
+     * @param string $note
+     * @return Card
+     */
+    public function setNote($note)
+    {
+        $this->note = $note;
+
+        return $this;
+    }
+
+    /**
+     * Get note
+     *
+     * @return string 
+     */
+    public function getNote()
+    {
+        return $this->note;
+    }
+    /**
+     * @var string
+     */
+    private $interest_late_percent;
+
+
+    /**
+     * Set interest_late_percent
+     *
+     * @param string $interestLatePercent
+     * @return Card
+     */
+    public function setInterestLatePercent($interestLatePercent)
+    {
+        $this->interest_late_percent = $interestLatePercent;
+
+        return $this;
+    }
+
+    /**
+     * Get interest_late_percent
+     *
+     * @return string 
+     */
+    public function getInterestLatePercent()
+    {
+        return $this->interest_late_percent;
+    }
+    /**
+     * @var \DateTime
+     */
+    private $finish_contract_date;
+
+
+    /**
+     * Set finish_contract_date
+     *
+     * @param \DateTime $finishContractDate
+     * @return Card
+     */
+    public function setFinishContractDate($finishContractDate)
+    {
+        $this->finish_contract_date = $finishContractDate;
+
+        return $this;
+    }
+
+    /**
+     * Get finish_contract_date
+     *
+     * @return \DateTime 
+     */
+    public function getFinishContractDate()
+    {
+        return $this->finish_contract_date;
     }
 }

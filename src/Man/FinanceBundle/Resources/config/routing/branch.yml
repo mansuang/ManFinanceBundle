@@ -1,0 +1,30 @@
+finance_branch:
+    pattern:  /
+    defaults: { _controller: "ManFinanceBundle:Branch:index" }
+
+finance_branch_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "ManFinanceBundle:Branch:show" }
+
+finance_branch_new:
+    pattern:  /new
+    defaults: { _controller: "ManFinanceBundle:Branch:new" }
+
+finance_branch_create:
+    pattern:  /create
+    defaults: { _controller: "ManFinanceBundle:Branch:create" }
+    requirements: { _method: post }
+
+finance_branch_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "ManFinanceBundle:Branch:edit" }
+
+finance_branch_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "ManFinanceBundle:Branch:update" }
+    requirements: { _method: post|put }
+
+finance_branch_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "ManFinanceBundle:Branch:delete" }
+    requirements: { _method: post|delete }

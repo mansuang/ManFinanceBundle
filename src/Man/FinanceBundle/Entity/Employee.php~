@@ -326,4 +326,9 @@ class Employee
     {
         return $this->parent;
     }
+	
+	public function __toString()
+	{
+		return $this->username;
+	}	
 }

@@ -1,0 +1,45 @@
+services:
+    sonata.admin.customer:
+        class: Man\FinanceBundle\Admin\CustomerAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "ลูกค้า", label: "ลูกค้า" }
+        arguments:
+            - ~
+            - Man\FinanceBundle\Entity\Customer
+            - ~
+        calls:
+            - [ setTranslationDomain, [ManFinanceBundle]]
+    sonata.admin.document:
+        class: Man\FinanceBundle\Admin\DocumentAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "ข้อมูล", label: "เอกสาร" }
+        arguments:
+            - ~
+            - Man\FinanceBundle\Entity\Document
+            - ~
+        calls:
+            - [ setTranslationDomain, [ManFinanceBundle]]
+    sonata.admin.branch:
+        class: Man\FinanceBundle\Admin\BranchAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "ข้อมูล", label: "สาขา" }
+        arguments:
+            - ~
+            - Man\FinanceBundle\Entity\Branch
+            - ~
+        calls:
+            - [ setTranslationDomain, [ManFinanceBundle]]
+    sonata.admin.owner:
+        class: Man\FinanceBundle\Admin\OwnerAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "ข้อมูล", label: "รายชื่อเจ้าหนี้" }
+        arguments:
+            - ~
+            - Man\FinanceBundle\Entity\Owner
+            - ~
+        calls:
+            - [ setTranslationDomain, [ManFinanceBundle]]
+    man_address_form:
+        class: Man\FinanceBundle\Form\Customer\AddressType
+        tags:
+            - { name: form.type }

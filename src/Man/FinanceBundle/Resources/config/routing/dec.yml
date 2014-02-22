@@ -1,6 +1,10 @@
-man_finance_dec_newcard:
-    pattern:  /newcard
-    defaults: { _controller: ManFinanceBundle:Dec:newcard }
+man_finance_dec_new:
+    pattern:  /new
+    defaults: { _controller: ManFinanceBundle:Dec:new }
+
+man_finance_dec_create:
+    pattern:  /create
+    defaults: { _controller: ManFinanceBundle:Dec:create }
 
 man_finance_dec_searchcard:
     pattern:  /searchcard

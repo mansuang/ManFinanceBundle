@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\HttpFoundation\Response;
-use Man\FinanceBundle\Form\AddressType;
+use Man\FinanceBundle\Form\Customer\AddressType;
 
 class DecNewCardType extends AbstractType
 {
@@ -52,7 +52,7 @@ class DecNewCardType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Man\FinanceBundle\Entity\Customer'
+            'data_class' => 'Man\FinanceBundle\Entity\Card'
         ));
     }
 

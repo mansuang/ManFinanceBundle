@@ -1113,4 +1113,60 @@ class Card
     {
         // Add your code here
     }
+    /**
+     * @var string
+     */
+    private $note;
+
+
+    /**
+     * Set note
+     *
+     * @param string $note
+     * @return Card
+     */
+    public function setNote($note)
+    {
+        $this->note = $note;
+
+        return $this;
+    }
+
+    /**
+     * Get note
+     *
+     * @return string 
+     */
+    public function getNote()
+    {
+        return $this->note;
+    }
+    /**
+     * @var string
+     */
+    private $interest_late_percent;
+
+
+    /**
+     * Set interest_late_percent
+     *
+     * @param string $interestLatePercent
+     * @return Card
+     */
+    public function setInterestLatePercent($interestLatePercent)
+    {
+        $this->interest_late_percent = $interestLatePercent;
+
+        return $this;
+    }
+
+    /**
+     * Get interest_late_percent
+     *
+     * @return string 
+     */
+    public function getInterestLatePercent()
+    {
+        return $this->interest_late_percent;
+    }
 }

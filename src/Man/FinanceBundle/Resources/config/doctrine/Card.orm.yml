@@ -28,40 +28,36 @@ Man\FinanceBundle\Entity\Card:
     begin_cost:
       type: string
       length: 255
-      unique: true	  
       nullable: true		  
     card_status:
       type: string
       length: 255
-      unique: true	  
       nullable: true	
     contract_style:
       type: string
       length: 255
-      unique: true	  
       nullable: true	
     contract_date:
+      type: date
+      nullable: true	 	  
+    finish_contract_date:
       type: date
       nullable: true	 	  
     cycle_day:
       type: string
       length: 255
-      unique: true	  
       nullable: true		
     interest_percent:
       type: string
       length: 255
-      unique: true	  
       nullable: true
-    interest_last_percent:
+    interest_late_percent:
       type: string
       length: 255
-      unique: true	  
       nullable: true	
     allow_day_late:
       type: string
       length: 255
-      unique: true	  
       nullable: true
     last_payment_date:
       type: date
@@ -78,30 +74,30 @@ Man\FinanceBundle\Entity\Card:
     current_cost:
       type: string
       length: 255
-      unique: true	  
       nullable: true
     current_interest:
       type: string
       length: 255
-      unique: true	  
       nullable: true	  
     current_fine:
       type: string
       length: 255
-      unique: true	  
       nullable: true	
     ip_address:
       type: string
       length: 255
-      unique: true	  
       nullable: true	
     is_deleted:
       type: boolean
+      nullable: true	  
     created_at:
       type: datetime
       nullable: true		
     update_at:
       type: datetime
+      nullable: true		  	  	    	  	    	   	      
+    note:
+      type: text
       nullable: true		  	  	    	  	    	   	      
   oneToMany:
     card_customer:

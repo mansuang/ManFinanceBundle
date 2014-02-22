@@ -1,0 +1,124 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Card</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Display_id</th>
+                <td>{{ entity.displayid }}</td>
+            </tr>
+            <tr>
+                <th>Card_type</th>
+                <td>{{ entity.cardtype }}</td>
+            </tr>
+            <tr>
+                <th>Employee_id</th>
+                <td>{{ entity.employeeid }}</td>
+            </tr>
+            <tr>
+                <th>Mid</th>
+                <td>{{ entity.mid }}</td>
+            </tr>
+            <tr>
+                <th>Branch_id</th>
+                <td>{{ entity.branchid }}</td>
+            </tr>
+            <tr>
+                <th>Begin_cost</th>
+                <td>{{ entity.begincost }}</td>
+            </tr>
+            <tr>
+                <th>Card_status</th>
+                <td>{{ entity.cardstatus }}</td>
+            </tr>
+            <tr>
+                <th>Contract_style</th>
+                <td>{{ entity.contractstyle }}</td>
+            </tr>
+            <tr>
+                <th>Contract_date</th>
+                <td>{{ entity.contractdate|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Cycle_day</th>
+                <td>{{ entity.cycleday }}</td>
+            </tr>
+            <tr>
+                <th>Interest_percent</th>
+                <td>{{ entity.interestpercent }}</td>
+            </tr>
+            <tr>
+                <th>Interest_last_percent</th>
+                <td>{{ entity.interestlastpercent }}</td>
+            </tr>
+            <tr>
+                <th>Allow_day_late</th>
+                <td>{{ entity.allowdaylate }}</td>
+            </tr>
+            <tr>
+                <th>Last_payment_date</th>
+                <td>{{ entity.lastpaymentdate|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Next_payment_date</th>
+                <td>{{ entity.nextpaymentdate|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Current_due_date</th>
+                <td>{{ entity.currentduedate|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Next_due_date</th>
+                <td>{{ entity.nextduedate|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Current_cost</th>
+                <td>{{ entity.currentcost }}</td>
+            </tr>
+            <tr>
+                <th>Current_interest</th>
+                <td>{{ entity.currentinterest }}</td>
+            </tr>
+            <tr>
+                <th>Current_fine</th>
+                <td>{{ entity.currentfine }}</td>
+            </tr>
+            <tr>
+                <th>Ip_address</th>
+                <td>{{ entity.ipaddress }}</td>
+            </tr>
+            <tr>
+                <th>Is_deleted</th>
+                <td>{{ entity.isdeleted }}</td>
+            </tr>
+            <tr>
+                <th>Created_at</th>
+                <td>{{ entity.createdat|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Update_at</th>
+                <td>{{ entity.updateat|date('Y-m-d H:i:s') }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('finance_card') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('finance_card_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

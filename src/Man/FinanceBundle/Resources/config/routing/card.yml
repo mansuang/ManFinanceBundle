@@ -1,0 +1,30 @@
+finance_card:
+    pattern:  /
+    defaults: { _controller: "ManFinanceBundle:Card:index" }
+
+finance_card_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "ManFinanceBundle:Card:show" }
+
+finance_card_new:
+    pattern:  /new
+    defaults: { _controller: "ManFinanceBundle:Card:new" }
+
+finance_card_create:
+    pattern:  /create
+    defaults: { _controller: "ManFinanceBundle:Card:create" }
+    requirements: { _method: post }
+
+finance_card_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "ManFinanceBundle:Card:edit" }
+
+finance_card_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "ManFinanceBundle:Card:update" }
+    requirements: { _method: post|put }
+
+finance_card_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "ManFinanceBundle:Card:delete" }
+    requirements: { _method: post|delete }
