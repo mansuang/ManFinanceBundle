@@ -6,13 +6,17 @@ return array(
 	'Effective Rate'	=>	'ลดต้นลดดอก',
 	'Effective Rate Work'=>	'งานลดต้นลดดอก',
 	'Add New Card'		=> 	'เพิ่มการ์ดใหม่',
+	'Card Detail'		=> 	'รายละเอียดการ์ด',
 	'Search Card'		=>	'ค้นหาการ์ด',
 	'Delete'			=>	'ลบ',
+	'Remove'			=>	'ลบ',
 	
 	//Customer
 	'Customer'			=>	'ลูกค้า',
+	'Supporter' 		=>	'ผู้ค้ำประกัน',
 	'Customer Manager'	=>	'จัดการลูกค้า',
 	'Add New Customer'	=>	'เพิ่มลูกค้าใหม่',
+	'Add Customer'	=>	'เพิ่มลูกค้า',
 	'Customer Details'	=>	'รายละเอียดลูกค้า',
 	'Title Name'		=>	'คำนำหน้า',
 	'First Name'		=>	'ชื่อ',
@@ -24,6 +28,7 @@ return array(
 	'Address'			=>	'ที่อยู่',
 	'Add Address'		=>	'เพิ่มที่อยู่',
 	'Customer List'		=>	'รายชื่อลูกค้า',
+	'Edit Customer'		=>	'แก้ไขลูกค้า',
 	
 	//Address
 	'Address Type'		=>	'ประเภทที่อยู่',
@@ -35,6 +40,7 @@ return array(
 	'Postcode'			=>	'รหัสไปรษณีย์',
 	
 	//Properties
+	'Add Properties'	=>	'เพิ่มหลักทรัพย์',
 	'Property'			=>	'หลักทรัพย์',
 	'Land'				=>	'ที่ดิน',
 	'Land Type'			=>	'ลักษณะที่ดิน',

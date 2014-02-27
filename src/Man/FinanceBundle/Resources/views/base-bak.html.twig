@@ -1,0 +1,254 @@
+{% trans_default_domain 'FOSUserBundle' %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <meta name="description" content="">
+	    <meta name="keywords" content="">
+	    <meta name="author" content="">
+  		
+  <!-- Stylesheets -->
+{% stylesheets 'bundles/manfinance/style/*' filter='cssrewrite' %}
+      <link rel="stylesheet" href="{{ asset_url }}" />
+{% endstylesheets %}  		
+{% block stylesheets %}{% endblock %}
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="{{ asset('bundles/manfinance/img/favicon/favicon.png') }}">		
+  <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+		
+  <!-- HTML5 Support for IE -->
+  <!--[if lt IE 9]>
+{% javascripts '@ManFinanceBundle/Resources/public/js/html5shim.js' %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}  
+  <![endif]-->
+  		
+</head>
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
+  
+    <div class="container">
+      <!-- Menu button for smallar screens -->
+		<div class="navbar-header">
+		  <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		  </button>
+		  <a href="http://new.twc-finance.com/Symfony/web/bundles/manfinance/index.html" class="navbar-brand" target="_blank">Metro <span class="bold">King</span></a>
+		</div>
+      <!-- Site name for smallar screens -->
+      
+
+      <!-- Navigation starts -->
+      <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">     
+
+
+
+        <!-- Links -->
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">            
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+              <img src="{{ asset('bundles/manfinance/img/user.jpg') }}" alt="" class="nav-user-pic img-responsive" /> {{ 'profile.show.username'|trans }}: {{ app.user.username }} <b class="caret"></b>              
+            </a>
+            
+            <!-- Dropdown menu -->
+            <ul class="dropdown-menu">
+              <li><a href="{{ path('fos_user_profile_show') }}"><i class="icon-user"></i> Profile</a></li>
+              <li><a href="{{ path('fos_user_change_password') }}"><i class="icon-cogs"></i> Change Password</a></li>
+              <li><a href="{{ path('fos_user_security_logout') }}"><i class="icon-off"></i> Logout</a></li>
+            </ul>
+          </li>
+          
+        </ul>
+
+        <!-- Notifications -->
+        <ul class="nav navbar-nav navbar-right">
+          
+          <!-- Comment button with number of latest comments count -->
+            <li class="dropdown dropdown-big">
+              <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                <i class="icon-comments"></i> Chats <span   class="badge badge-info">6</span> 
+              </a>
+
+                <ul class="dropdown-menu">
+                  <li>
+                    <!-- Heading - h5 -->
+                    <h5><i class="icon-comments"></i> Chats</h5>
+                    <!-- Use hr tag to add border -->
+                    <hr />
+                  </li>
+                  <li>
+                    <!-- List item heading h6 -->
+                    <a href="#">Hi :)</a> <span class="label label-warning pull-right">10:42</span>
+                    <div class="clearfix"></div>
+                    <hr />
+                  </li>
+                  <li>
+                    <a href="#">How are you?</a> <span class="label label-warning pull-right">20:42</span>
+                    <div class="clearfix"></div>
+                    <hr />
+                  </li>
+                  <li>
+                    <a href="#">What are you doing?</a> <span class="label label-warning pull-right">14:42</span>
+                    <div class="clearfix"></div>
+                    <hr />
+                  </li>                  
+                  <li>
+                    <div class="drop-foot">
+                      <a href="#">View All</a>
+                    </div>
+                  </li>                                    
+                </ul>
+            </li>
+
+            <!-- Message button with number of latest messages count-->
+            <li class="dropdown dropdown-big">
+              <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                <i class="icon-envelope-alt"></i> Inbox <span class="badge badge-important">6</span> 
+              </a>
+
+                <ul class="dropdown-menu">
+                  <li>
+                    <!-- Heading - h5 -->
+                    <h5><i class="icon-envelope-alt"></i> Messages</h5>
+                    <!-- Use hr tag to add border -->
+                    <hr />
+                  </li>
+                  <li>
+                    <!-- List item heading h6 -->
+                    <a href="#">Hello how are you?</a>
+                    <!-- List item para -->
+                    <p>Quisque eu consectetur erat eget  semper...</p>
+                    <hr />
+                  </li>
+                  <li>
+                    <a href="#">Today is wonderful?</a>
+                    <p>Quisque eu consectetur erat eget  semper...</p>
+                    <hr />
+                  </li>
+                  <li>
+                    <div class="drop-foot">
+                      <a href="#">View All</a>
+                    </div>
+                  </li>                                    
+                </ul>
+            </li>
+
+            <!-- Members button with number of latest members count -->
+            <li class="dropdown dropdown-big">
+              <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                <i class="icon-user"></i> Users <span   class="badge badge-success">6</span> 
+              </a>
+
+                <ul class="dropdown-menu">
+                  <li>
+                    <!-- Heading - h5 -->
+                    <h5><i class="icon-user"></i> Users</h5>
+                    <!-- Use hr tag to add border -->
+                    <hr />
+                  </li>
+                  <li>
+                    <!-- List item heading h6-->
+                    <a href="#">Ravi Kumar</a> <span class="label label-warning pull-right">Free</span>
+                    <div class="clearfix"></div>
+                    <hr />
+                  </li>
+                  <li>
+                    <a href="#">Balaji</a> <span class="label label-important pull-right">Premium</span>
+                    <div class="clearfix"></div>
+                    <hr />
+                  </li>
+                  <li>
+                    <a href="#">Kumarasamy</a> <span class="label label-warning pull-right">Free</span>
+                    <div class="clearfix"></div>
+                    <hr />
+                  </li>                  
+                  <li>
+                    <div class="drop-foot">
+                      <a href="#">View All</a>
+                    </div>
+                  </li>                                    
+                </ul>
+            </li> 
+
+        </ul>
+		</nav>
+      </div>
+
+    </div>
+  
+<!-- Main content starts -->
+
+<div class="content">
+
+  	<!-- Sidebar -->
+		{% include "ManFinanceBundle::sidebar.html.twig" %}
+    <!-- Sidebar ends -->
+
+  	<!-- Main bar -->
+  	<div class="mainbar">	
+	    <!-- Page heading -->
+	    <div class="page-head">
+        <!-- Page heading -->
+	      <h2 class="pull-left">{% block page_heading %}page_heading{% endblock %}
+          <!-- page meta -->
+          <span class="page-meta">{% block page_meta %}page_meta{% endblock %}</span>
+        </h2>
+
+
+        <!-- Breadcrumb -->
+        <div class="bread-crumb pull-right">
+          <a href="index.html"><i class="icon-home"></i> Home</a> 
+          <!-- Divider -->
+          <span class="divider">/</span> 
+          <a href="#" class="bread-current">Tables</a>
+        </div>
+
+        <div class="clearfix"></div>
+
+	    </div>
+	    <!-- Page heading ends -->
+		
+        {% block body %}{% endblock %}
+		
+	</div>
+   <!-- Mainbar ends -->	    	
+   <div class="clearfix"></div>
+
+</div>
+<!-- Content ends -->
+<!-- Scroll to top -->
+<span class="totop"><a href="#"><i class="icon-chevron-up"></i></a></span> 
+
+<!-- JS -->
+{% javascripts
+    '@ManFinanceBundle/Resources/public/js/jquery.js'
+    '@ManFinanceBundle/Resources/public/js/bootstrap.js'
+	'@ManFinanceBundle/Resources/public/js/jquery-ui-1.10.2.custom.min.js'
+	'@ManFinanceBundle/Resources/public/js/fullcalendar.min.js'
+	'@ManFinanceBundle/Resources/public/js/jquery.rateit.min.js'
+	'@ManFinanceBundle/Resources/public/js/jquery.prettyPhoto.js'
+	'@ManFinanceBundle/Resources/public/js/excanvas.min.js'
+	'@ManFinanceBundle/Resources/public/js/jquery.flot.js'
+	'@ManFinanceBundle/Resources/public/js/jquery.flot.resize.js'
+	'@ManFinanceBundle/Resources/public/js/jquery.flot.pie.js'
+	'@ManFinanceBundle/Resources/public/js/jquery.flot.stack.js'
+	'@ManFinanceBundle/Resources/public/js/jquery.gritter.min.js'
+	'@ManFinanceBundle/Resources/public/js/sparklines.js'
+	'@ManFinanceBundle/Resources/public/js/jquery.cleditor.min.js'
+	'@ManFinanceBundle/Resources/public/js/bootstrap-datetimepicker.min.js'
+	'@ManFinanceBundle/Resources/public/js/bootstrap-switch.min.js'
+	'@ManFinanceBundle/Resources/public/js/filter.js'
+	'@ManFinanceBundle/Resources/public/js/custom.js'
+    '@ManFinanceBundle/Resources/public/js/charts.js' %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}	
+{% block javascripts %}{% endblock %}
+	
+</body>
+</html>

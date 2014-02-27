@@ -1,71 +1,34 @@
+<a href="#"><strong><i class="glyphicon glyphicon-briefcase"></i> Menu</strong></a>
 
-<div class="sidebar">
-        <div class="sidebar-dropdown"><a href="#">Navigation</a></div>
+<hr>
 
-        <div class="sidebar-inner">
+	
+<ul class="list-unstyled nav nav-pills nav-stacked"> 
+	<li{% if app.request.get('_route') == 'man_finance_homepage' %} class="active"{% endif %}>
+		<a href="{{ path('man_finance_homepage') }}"><i class="glyphicon glyphicon-home"></i> {{ 'Dashboard'|trans }}</a></li> 
+	<li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#decMenu">
+	  <h5>{{ 'Effective Rate'|trans }} <i class="glyphicon glyphicon-chevron-down"></i></h5>
+	  </a>
+		<ul class="list-unstyled collapse in nav nav-pills nav-stacked" id="decMenu">		
+			<li{% if app.request.get('_route') == 'man_finance_dec_new' %} class="active"{% endif %}>
+				<a href="{{ path('man_finance_dec_new') }}"><i class="glyphicon glyphicon-plus"></i> {{ 'Add New Card'|trans }}</a></li>
+			<li{% if app.request.get('_route') == 'man_finance_dec_searchcard' %} class="active"{% endif %}>
+				<a href="{{ path('man_finance_dec_searchcard') }}"><i class="glyphicon glyphicon-search"></i> {{ 'Search Card'|trans }}</a></li>
+		</ul>
+	</li>	
+	<li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#customerMenu">
+	  <h5>{{ 'Customer'|trans }} <i class="glyphicon glyphicon-chevron-down"></i></h5>
+	  </a>
+		<ul class="list-unstyled collapse in nav nav-pills nav-stacked" id="customerMenu">	
+			<li{% if app.request.get('_route') == 'man_finance_customer_new' %} class="active"{% endif %}>
+				<a href="{{ path('man_finance_customer_new') }}"><i class="glyphicon glyphicon-plus"></i> {{ 'Add New Customer'|trans }}</a></li>
+			<li{% if app.request.get('_route') == 'man_finance_customer' %} class="active"{% endif %}>
+				<a href="{{ path('man_finance_customer') }}"><i class="glyphicon glyphicon-th-list"></i> {{ 'Customer List'|trans }}</a></li>
+		</ul>
+	</li>				
 
-          <!-- Search form -->
-          <div class="sidebar-widget">
-             <form >
-              	<input type="text" class="form-control" placeholder="Search">
-            </form>
-          </div>
+</ul> 
 
-          <!--- Sidebar navigation -->
-          <!-- If the main navigation has sub navigation, then add the class "has_submenu" to "li" of main navigation. -->
-          <ul class="navi">
-
-            <!-- Use the class nred, ngreen, nblue, nlightblue, nviolet or norange to add background color. You need to use this in <li> tag. -->
-
-            <li class="nred current"><a href="{{ path('man_finance_homepage') }}"><i class="icon-desktop"></i> หน้าหลัก</a></li>
-
-            <!-- Menu with sub menu -->
-            <li class="has_submenu nlightblue">
-              <a href="#">
-                <!-- Menu name with icon -->
-                <i class="icon-th"></i>{{ 'Effective Rate'|trans }}
-                <!-- Icon for dropdown -->
-                <span class="pull-right"><i class="icon-angle-right"></i></span>
-              </a>
-
-              <ul>
-                <li><a href="{{ path('man_finance_dec_new') }}">{{ 'Add New Card'|trans }}</a></li>
-                <li><a href="{{ path('man_finance_dec_searchcard') }}">{{ 'Search Card'|trans }}</a></li>
-				<li><a href="{{ path('man_finance_dec_debtsmem') }}">ค้างชำระตามลูกค้า</a></li>
-				<li><a href="{{ path('man_finance_dec_debtsarea') }}">ค้างชำระตามพื้นที่</a></li>
-				<li><a href="{{ path('man_finance_dec_appointment') }}">นัดหมายลูกค้า</a></li>
-				<li><a href="{{ path('man_finance_dec_percentdebt') }}">เปอร์เซ็นต์ภาระหนี้</a></li>
-              </ul>
-            </li>
-
-            <!-- Menu with sub menu -->
-            <li class="has_submenu nlightblue">
-              <a href="#">
-                <!-- Menu name with icon -->
-                <i class="icon-th"></i>{{ 'Customer'|trans }}
-                <!-- Icon for dropdown -->
-                <span class="pull-right"><i class="icon-angle-right"></i></span>
-              </a>
-
-              <ul>
-				<li><a href="{{ path('man_finance_customer') }}">{{ 'Customer List'|trans }}</a></li>
-                <li><a href="{{ path('man_finance_customer_new') }}">{{ 'Add New Customer'|trans }}</a></li>
-              </ul>
-            </li>
-
-          </ul>
+<hr>
 
 
-
-
-          <!-- Date -->
-
-          <div class="sidebar-widget">
-            <div id="todaydate"></div>
-          </div>
-
-
-
-        </div>
-
-    </div>

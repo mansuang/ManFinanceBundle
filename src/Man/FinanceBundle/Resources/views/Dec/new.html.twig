@@ -3,55 +3,160 @@
 
 {% block body -%}
 	    <!-- Matter -->
-
-	    <div class="matter">
-        <div class="container">
-
-          <div class="row">
-
+       <a href="#"><strong><i class="glyphicon glyphicon-dashboard"></i> {{ 'Add New Card'|trans }} </strong></a>  
+            
+       <hr>
+	   
+		<div class="row">
             <div class="col-md-12">
-
-
-              <div class="widget wgreen">
-                
-                <div class="widget-head">
-                  <div class="pull-left"> {{ 'Add New Card'|trans }} </div>
-                  <div class="widget-icons pull-right">
-                    <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a> 
-                    <a href="#" class="wclose"><i class="icon-remove"></i></a>
-                  </div>
-                  <div class="clearfix"></div>
-                </div>
-
-                <div class="widget-content">
-                  <div class="padd">
-
-                    <h6> {{ 'Add New Dec Card'|trans }} </h6>
-                    <hr />
+				<div class="panel panel-default">
+					{# ------------------------------------------------------ Customer ------------------------------------------------------ #}
+					<div class="panel-heading">
+					  <div class="panel-title">						
+						<h4>{{ 'Customer'|trans }}</h4>
+					  </div>
+					</div><!--/panel content-->
+					<div class="panel-body">
+						<div class="row">
+						  <table class="table">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>{{ 'First Name'|trans }}</th>
+									<th>Actions</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td>นาย สุริยัน จันทรา</td>
+									<td>  
+										<button type="button" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> {{ 'Remove'|trans }}</button>
+										<button type="button" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-list-alt"></span> {{ 'Edit Customer'|trans }}</button>
+									</td>
+								</tr>
+							</tbody>
+						  </table>
+						</div>
+						<div class="row">
+							<button type="button" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-plus-sign"></span> {{ 'Add Customer'|trans }}</button>
+						</div>
+					</div><!--/panel content-->
+					{# ------------------------------------------------------ Supporter ------------------------------------------------------ #}
+					<div class="panel-heading">
+					  <div class="panel-title">						
+						<h4>{{ 'Supporter'|trans }}</h4>
+					  </div>
+					</div><!--/panel content-->
+					<div class="panel-body">
+						<div class="row">
+						  <table class="table">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>{{ 'First Name'|trans }}</th>
+									<th>Actions</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td>นาย สุริยัน จันทรา</td>
+									<td>  
+										<button type="button" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> {{ 'Remove'|trans }}</button>
+										<button type="button" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-list-alt"></span> {{ 'Edit Customer'|trans }}</button>
+									</td>
+								</tr>
+							</tbody>
+						  </table>
+						</div>
+						<div class="row">
+							<button type="button" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-plus-sign"></span> {{ 'Add Customer'|trans }}</button>
+						</div>						
+					</div><!--/panel content-->					
+					{# ------------------------------------------------------ Property ------------------------------------------------------ #}
+					<div class="panel-heading">
+					  <div class="panel-title">						
+						<h4>{{ 'Property'|trans }}</h4>
+					  </div>
+					</div><!--/panel content-->
+					<div class="panel-body">
+						<div class="row">
+						  <table class="table">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>{{ 'First Name'|trans }}</th>
+									<th>{{ 'Property'|trans }}</th>
+									<th>Actions</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td>นาย สุริยัน จันทรา</td>
+									<td>โฉนดที่ดิน 65606</td>
+									<td>  
+										<button type="button" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> {{ 'Remove'|trans }}</button>
+										<button type="button" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-list-alt"></span> {{ 'Show Property'|trans }}</button>
+									</td>
+								</tr>
+							</tbody>
+						  </table>
+						</div>
+						<div class="row">
+							<button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#propertyModal"><span class="glyphicon glyphicon-plus-sign"></span> {{ 'Add Properties'|trans }}</button>
+							<a href="http://admin.twc-finance.com/upload.php" data-target="#propertyModal" role="button" class="btn external" data-toggle="modal">Launch First</a>
+							<a href="http://admin.twc-finance.com/upload_frame.php" data-target="#propertyModal" role="button" class="btn external" data-toggle="modal">Launch Second</a>
+						</div>												
+					</div><!--/panel content-->
 					
-    {{ form(form) }}
+					{# ------------------------------------------------------ New Card Form ------------------------------------------------------ #}
+					<div class="panel-heading">
+					  <div class="panel-title">						
+						<h4>{{ 'Card Detail'|trans }}</h4>
+					  </div>
+					</div><!--/panel content-->
+					<div class="panel-body">
+					  
+					  
+						{{ form(form) }}
+					</div><!--/panel content-->					
+				</div><!--/panel--> 	
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('man_finance_customer') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
-
-                  </div>
-                </div>
-                  <div class="widget-foot">
-                    <!-- Footer goes here -->
-                  </div>
-              </div>  
-
-            </div>
-
-          </div>
-
-        </div>
-		  </div>
+			</div><!--/col--> 
+			<!--end left col-->
+			
+		</div><!--/row--> 
 
 		<!-- Matter ends -->
+		
+<!-- Modal -->
+<div class="modal fade" id="propertyModal" tabindex="-1" role="dialog" aria-labelledby="propertyModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="propertyModalLabel">{{ 'Show Property'|trans }}</h4>
+      </div>
+      <div class="modal-body">
+        Content here ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+{% block javascripts %}
+<script>
+$('a.external').on('click', function(e) {
+	e.preventDefault();
+	var url = $(this).attr('href');
+	$(".modal-body").html('<iframe width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true" src="'+url+'"></iframe>');
+});
+</script>
 {% endblock %}

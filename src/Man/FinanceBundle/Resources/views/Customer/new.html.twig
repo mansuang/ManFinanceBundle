@@ -3,104 +3,88 @@
 
 {% block body -%}
 	    <!-- Matter -->
-
+       <a href="#"><strong><i class="glyphicon glyphicon-dashboard"></i> {{ 'Add New Customer'|trans }}</strong></a>  
+            
+       <hr>
 		{{ form_start(form) }}
-	    <div class="matter">
-        <div class="container">
-
           <div class="row">
             <div class="col-md-7">
-
-              <div class="widget wviolet">
-                <div class="widget-head">
-                  <div class="pull-left"> {{ 'Add New Customer'|trans }} </div>
-                  <div class="widget-icons pull-right">
-                    <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a> 
-                    <a href="#" class="wclose"><i class="icon-remove"></i></a>
-                  </div>
-                  <div class="clearfix"></div>
-                </div>
-
-                <div class="widget-content">
-					  <div class="padd">
-						{# ------------------------------------------------------ Customer ------------------------------------------------------ #}
-						<h6> {{ 'Customer Details'|trans }} </h6>
-						<hr />
-						<div class="form-horizontal">
-							{{ form_row(form.id_card) }}
-							{{ form_row(form.title_name) }}
-							{{ form_row(form.first_name) }}
-							{{ form_row(form.last_name) }}
-							{{ form_row(form.nick_name) }}
-							{{ form_row(form.phone) }}
-							{{ form_row(form.birth_date) }}
-						   <h6>{{ 'Address'|trans }}</h6>
-						   <hr />
-							<ul class="addresses" data-prototype="{{ form_widget(form.address.vars.prototype)|e }}">
-								{# iterate over each existing tag and render its only field: name #}
-								{% for addr in form.address %}
-									<li>{{ form_row(addr) }}</li>
-								{% endfor %}
-							</ul>							
-
-						</div>
-			
+				<div class="panel panel-default">
+					<div class="panel-heading">
+					  <div class="panel-title">
+						<i class="glyphicon glyphicon-user pull-right"></i>
+						<h4>{{ 'Customer'|trans }}</h4>
 					  </div>
-                </div>
-                    <!-- Footer goes here -->
-              </div>  
-              
-            </div>
+					</div><!--/panel content-->
+					<div class="panel-body">
+					  
+					  {# ------------------------------------------------------ Customer ------------------------------------------------------ #}
+						{{ form_row(form.id_card) }}
+						{{ form_row(form.title_name) }}
+						{{ form_row(form.first_name) }}
+						{{ form_row(form.last_name) }}
+						{{ form_row(form.nick_name) }}
+						{{ form_row(form.phone) }}
+						{{ form_row(form.birth_date) }}
+					</div>
+					<div class="panel-heading">
+					  <div class="panel-title">
+						<i class="glyphicon glyphicon-home pull-right"></i>
+						<h4>{{ 'Address'|trans }}</h4>
+					  </div>
+					</div><!--/panel content-->
+					<div class="panel-body">
+						<ul class="addresses" data-prototype="{{ form_widget(form.address.vars.prototype)|e }}">
+							{# iterate over each existing tag and render its only field: name #}
+							{% for addr in form.address %}
+								<li>{{ form_row(addr) }}</li>
+							{% endfor %}
+						</ul>								
+
+					</div><!--/panel content-->
+				</div><!--/panel--> 
+            </div><!--/col-->
 
             <!-- post sidebar -->
 
             <div class="col-md-5">
-
-              <div class="widget wgreen">
-                <div class="widget-head">
-                  <div class="pull-left">{{ 'Property'|trans }}</div>
-                  <div class="widget-icons pull-right">
-                    <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a> 
-                    <a href="#" class="wclose"><i class="icon-remove"></i></a>
-                  </div>
-                  <div class="clearfix"></div>
-                </div>
-
-                <div class="widget-content">
-                  <div class="padd">
+				<div class="panel panel-default">
 					{# ------------------------------------------------------ Land ------------------------------------------------------ #}
-					<div class="form-horizontal">
-						   <h6>{{ 'Land'|trans }}</h6>
-						   <hr />
-							<ul class="property_land" data-prototype="{{ form_widget(form.property_land.vars.prototype)|e }}">
-								{# iterate over each existing tag and render its only field: name #}
-								{% for land in form.property_land %}
-									<li>{{ form_row(land) }}</li>
-								{% endfor %}
-							</ul>						
-					
+					<div class="panel-heading">
+					  <div class="panel-title">
+						<i class="glyphicon glyphicon-tree-deciduous pull-right"></i>
+						<h4>{{ 'Land'|trans }}</h4>
+					  </div>
+					</div>
+					<div class="panel-body">
+						<ul class="property_land" data-prototype="{{ form_widget(form.property_land.vars.prototype)|e }}">
+							{# iterate over each existing tag and render its only field: name #}
+							{% for land in form.property_land %}
+								<li>{{ form_row(land) }}</li>
+							{% endfor %}
+						</ul>
+					</div>  
 					{# ------------------------------------------------------ Car ------------------------------------------------------ #}
-						   <h6>{{ 'Car'|trans }}</h6>
-						   <hr />
-							<ul class="property_car" data-prototype="{{ form_widget(form.property_car.vars.prototype)|e }}">
-								{# iterate over each existing tag and render its only field: name #}
-								{% for car in form.property_car %}
-									<li>{{ form_row(car) }}</li>
-								{% endfor %}
-							</ul>				
-					
+					<div class="panel-heading">
+					  <div class="panel-title">
+						<i class="glyphicon glyphicon-plane pull-right"></i>
+						<h4>{{ 'Car'|trans }}</h4>
+					  </div>
+					</div>
+					<div class="panel-body">
+						<ul class="property_car" data-prototype="{{ form_widget(form.property_car.vars.prototype)|e }}">
+							{# iterate over each existing tag and render its only field: name #}
+							{% for car in form.property_car %}
+								<li>{{ form_row(car) }}</li>
+							{% endfor %}
+						</ul>				
 					</div>
 
                   </div>
                 </div>
               </div>  			  
 
-            </div>
 
-          </div>
-
-        </div>
-		  </div>
 		{{ form_end(form) }}
 		<!-- /form -->
 		<!-- Matter ends -->
@@ -113,11 +97,11 @@ var $landCollectionHolder;
 var $carCollectionHolder;
 
 // setup an "add a tag" link
-var $addAddressLink = $('<a href="#" class="add_tag_link"><i class="icon-plus-sign"></i> {{ 'Add Address'|trans }}</a>');
+var $addAddressLink = $('<a href="#" class="add_tag_link"><i class="glyphicon glyphicon-plus-sign"></i> {{ 'Add Address'|trans }}</a>');
 var $addressNewLinkLi = $('<li></li>').append($addAddressLink);
-var $addLandLink = $('<a href="#" class="add_tag_link"><i class="icon-plus-sign"></i> {{ 'Add Land'|trans }}</a>');
+var $addLandLink = $('<a href="#" class="add_tag_link"><i class="glyphicon glyphicon-plus-sign"></i> {{ 'Add Land'|trans }}</a>');
 var $landNewLinkLi = $('<li></li>').append($addLandLink);
-var $addCarLink = $('<a href="#" class="add_tag_link"><i class="icon-plus-sign"></i> {{ 'Add Car'|trans }}</a>');
+var $addCarLink = $('<a href="#" class="add_tag_link"><i class="glyphicon glyphicon-plus-sign"></i> {{ 'Add Car'|trans }}</a>');
 var $carNewLinkLi = $('<li></li>').append($addCarLink);
 
 jQuery(document).ready(function() {
@@ -226,7 +210,7 @@ function addTagForm($collectionHolder, $newLinkLi, label) {
 }
 
 function addTagFormDeleteLink($tagFormLi) {
-    var $removeFormA = $('<a href="#"><i class="icon-minus-sign"></i> {{ 'Delete'|trans }}</a>');
+    var $removeFormA = $('<a href="#"><i class="glyphicon glyphicon-minus-sign"></i> {{ 'Delete'|trans }}</a>');
     $tagFormLi.append($removeFormA);
 
     $removeFormA.on('click', function(e) {
